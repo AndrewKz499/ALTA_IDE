@@ -1,0 +1,81 @@
+<!-- =====================================================================
+     Actions / Button (Primary) — шаблон разметки
+     Источник: Figma AltaIDE/ButtonPrimary (node 185100:882)
+
+     Оси:
+       data-size = "l" (14/20) | "m" (12/16)          — по умолчанию "l"
+       data-icon = "none" | "left" | "right" | "only"  — размещение иконки
+     Состояния:
+       Default   — как есть
+       Hover     — :hover
+       Pressed   — :active
+       Disabled  — нативный атрибут disabled
+       Loading   — data-state="loading" (спиннер, aria-busy ставит button.js)
+
+     Иконки — inline-SVG (currentColor); исходники в assets/icons/*.svg.
+     Спиннер обязателен как последний потомок для режима Loading.
+     ===================================================================== -->
+
+<!-- icon = none -->
+<button class="ds-button" type="button" data-size="l" data-icon="none">
+  <span class="ds-button__label">Кнопка</span>
+  <span class="ds-button__spinner" aria-hidden="true">
+    <!-- source: assets/icons/spinner.svg -->
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/>
+      <path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    </svg>
+  </span>
+</button>
+
+<!-- icon = left (ведущая иконка перед текстом) -->
+<button class="ds-button" type="button" data-size="l" data-icon="left">
+  <span class="ds-button__icon" aria-hidden="true">
+    <!-- source: assets/icons/placeholder.svg -->
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="ds-button__label">Кнопка</span>
+  <span class="ds-button__spinner" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/>
+      <path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    </svg>
+  </span>
+</button>
+
+<!-- icon = right (ведомая иконка после текста) -->
+<button class="ds-button" type="button" data-size="l" data-icon="right">
+  <span class="ds-button__label">Кнопка</span>
+  <span class="ds-button__icon" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="ds-button__spinner" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/>
+      <path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    </svg>
+  </span>
+</button>
+
+<!-- icon = only (квадрат, без текста; ОБЯЗАТЕЛЕН aria-label) -->
+<button class="ds-button" type="button" data-size="l" data-icon="only" aria-label="Добавить">
+  <span class="ds-button__icon" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span class="ds-button__spinner" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/>
+      <path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    </svg>
+  </span>
+</button>
+
+<!-- Loading: добавить data-state="loading" (button.js выставит aria-busy="true"). -->
+<!-- Disabled: добавить нативный атрибут disabled. -->
+<!-- Size m:   заменить data-size="l" на data-size="m". -->

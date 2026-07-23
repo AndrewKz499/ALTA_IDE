@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Actions / Button (Primary) — demo</title>
+
+  <!-- Локальный шрифт Rubik — подключается ДО токенов. -->
+  <link rel="stylesheet" href="../../../assets/fonts/fonts.css" />
+  <!-- Токены системы (Dark — база: страница тёмная без data-theme). -->
+  <link rel="stylesheet" href="../../../tokens/tokens.css" />
+  <!-- Стили компонента. -->
+  <link rel="stylesheet" href="./button.css" />
+
+  <style>
+    /* --- Демо-обвязка (не часть компонента) --- */
+    body {
+      margin: 0;
+      padding: 24px;
+      background: var(--color-dark-gray-15);
+      color: var(--color-dark-gray-7);
+      font-family: var(--font-family-rubik), system-ui, sans-serif;
+    }
+    h1 { font-size: 20px; margin: 0 0 4px; color: var(--color-dark-white); }
+    p.sub { margin: 0 0 24px; font-size: 12px; }
+
+    .size-block { margin-bottom: 32px; }
+    .size-block > h2 {
+      font-size: 14px; margin: 0 0 12px;
+      color: var(--color-dark-white);
+      border-bottom: 1px solid var(--color-dark-gray-12);
+      padding-bottom: 6px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 120px repeat(4, 1fr);
+      gap: 12px 16px;
+      align-items: center;
+    }
+    .grid .col-h,
+    .grid .row-h {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      color: var(--color-dark-gray-9);
+    }
+    .row-h { text-align: right; }
+    .cell { display: flex; }
+
+    /* Демо-визуализация псевдосостояний (компонент их даёт через :hover / :active).
+       Значения берём из тех же токенов — новых величин не вводим. */
+    .cell[data-force="hover"] .ds-button:not(:disabled):not([data-state="loading"]) {
+      background: var(--buttons-primary-background-hover);
+    }
+    .cell[data-force="pressed"] .ds-button:not(:disabled):not([data-state="loading"]) {
+      background: var(--buttons-primary-background-pressed);
+    }
+  </style>
+</head>
+<body>
+  <h1>Actions / Button (Primary)</h1>
+  <p class="sub">2 размера × 5 состояний × 4 варианта иконки = 40 клеток. Тема — Dark (база).<br>
+     Hover / Pressed показаны демо-обвязкой; вживую они работают через <code>:hover</code> / <code>:active</code>.</p>
+
+  <div id="root"></div>
+
+  <script src="./button.js"></script>
+  <script>
+    (function () {
+      var SIZES  = [{ k: "l", t: "Size L (14/20)" }, { k: "m", t: "Size M (12/16)" }];
+      var STATES = ["default", "hover", "pressed", "loading", "disabled"];
+      var ICONS  = ["none", "left", "right", "only"];
+
+      var ICON_SVG =
+        '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">' +
+        '<path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      var SPINNER_SVG =
+        '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">' +
+        '<circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/>' +
+        '<path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>';
+
+      function iconSpan()    { return '<span class="ds-button__icon" aria-hidden="true">' + ICON_SVG + '</span>'; }
+      function spinnerSpan() { return '<span class="ds-button__spinner" aria-hidden="true">' + SPINNER_SVG + '</span>'; }
+
+      function buildButton(size, state, icon) {
+        var attrs = ['class="ds-button"', 'type="button"', 'data-size="' + size + '"', 'data-icon="' + icon + '"'];
+        if (state === "loading")  attrs.push('data-state="loading"');
+        if (state === "disabled") attrs.push('disabled');
+        if (icon === "only")      attrs.push('aria-label="Действие"');
+
+        var inner = "";
+        if (icon === "left")  inner = iconSpan() + '<span class="ds-button__label">Кнопка</span>';
+        else if (icon === "right") inner = '<span class="ds-button__label">Кнопка</span>' + iconSpan();
+        else if (icon === "only")  inner = iconSpan();
+        else inner = '<span class="ds-button__label">Кнопка</span>';
+
+        return "<button " + attrs.join(" ") + ">" + inner + spinnerSpan() + "</button>";
+      }
+
+      var root = document.getElementById("root");
+      var html = "";
+
+      SIZES.forEach(function (size) {
+        html += '<section class="size-block"><h2>' + size.t + '</h2><div class="grid">';
+        // header row
+        html += '<div class="col-h"></div>';
+        ICONS.forEach(function (ic) { html += '<div class="col-h">icon: ' + ic + '</div>'; });
+        // one row per state
+        STATES.forEach(function (state) {
+          html += '<div class="row-h">' + state + '</div>';
+          ICONS.forEach(function (ic) {
+            var force = (state === "hover" || state === "pressed") ? ' data-force="' + state + '"' : '';
+            html += '<div class="cell"' + force + '>' + buildButton(size.k, state, ic) + '</div>';
+          });
+        });
+        html += '</div></section>';
+      });
+
+      root.innerHTML = html;
+
+      // Инициализируем компоненты (aria-busy для loading и т.д.).
+      if (window.DSButton) window.DSButton.init(root);
+    })();
+  </script>
+</body>
+</html>

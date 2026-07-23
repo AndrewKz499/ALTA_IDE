@@ -6,4 +6,4 @@
 
 | Figma | GitHub path | States | Status | Version |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| Actions / Button (Primary) | components/actions/button/ | Default, Hover, Pressed, Loading, Disabled | Ready | 0.1 |

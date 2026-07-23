@@ -1,0 +1,141 @@
+/* =====================================================================
+   Actions / Button (Primary) — ALTA IDE
+   Источник: Figma AltaIDE/ButtonPrimary (node 185100:882)
+   Только токены из tokens/tokens.css. Все селекторы — под .ds-button.
+   Высота не хардкодится: line-height + вертикальный паддинг дают 28 (l) / 24 (m).
+   ===================================================================== */
+
+.ds-button {
+  /* Ось размера. По умолчанию — "l"; [data-size="m"] переопределяет ниже. */
+  --_font-size: var(--font-size-1);    /* 14 */
+  --_line-height: var(--line-height-0); /* 20 */
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--buttons-between-padding); /* зазор иконка ↔ текст = 4 */
+
+  box-sizing: border-box;
+  padding-block: var(--buttons-primary-v-padding); /* 4 сверху/снизу */
+  padding-inline: var(--buttons-h-padding);        /* 12 слева/справа */
+  border: 0;
+  border-radius: var(--buttons-radius); /* 4 */
+
+  background: var(--buttons-primary-background-default);
+  color: var(--buttons-primary-content-default);
+
+  font-family: var(--font-family-rubik);
+  font-size: var(--_font-size);
+  font-weight: 400; /* Regular; веса Figma в токенах — строки, поэтому число */
+  line-height: var(--_line-height);
+
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ds-button[data-size="m"] {
+  --_font-size: var(--font-size-0);    /* 12 */
+  --_line-height: var(--line-height-7); /* 16 */
+}
+
+/* --- Слоты --- */
+.ds-button__label {
+  white-space: nowrap;
+}
+
+.ds-button__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Высота слота = line-height, чтобы у icon-only высота совпадала с текстовыми. */
+  block-size: var(--_line-height);
+}
+
+.ds-button__icon svg {
+  display: block;
+  inline-size: var(--num-16);
+  block-size: var(--num-16);
+}
+
+/* --- Иконка-только: квадрат, без текста --- */
+.ds-button[data-icon="only"] {
+  padding-inline: var(--buttons-primary-v-padding); /* симметрия по осям */
+  aspect-ratio: 1 / 1; /* width = height, высоту не хардкодим */
+}
+
+.ds-button[data-icon="only"] .ds-button__label {
+  display: none;
+}
+
+/* --- Состояния (порядок задаёт приоритет при равной специфичности) --- */
+.ds-button:hover {
+  background: var(--buttons-primary-background-hover);
+}
+
+.ds-button:active {
+  background: var(--buttons-primary-background-pressed);
+}
+
+/* Loading — перекрывает hover/active, блокирует указатель. */
+.ds-button[data-state="loading"] {
+  background: var(--buttons-primary-background-loading);
+  color: var(--buttons-primary-content-loading);
+  pointer-events: none;
+}
+
+.ds-button[data-state="loading"] .ds-button__label,
+.ds-button[data-state="loading"] .ds-button__icon {
+  visibility: hidden; /* сохраняем габариты, текст/иконку заменяет спиннер */
+}
+
+/* Disabled — нативный атрибут, наивысший приоритет (объявлен последним). */
+.ds-button:disabled {
+  background: var(--buttons-primary-background-disabled);
+  color: var(--buttons-primary-content-disabled);
+  cursor: not-allowed;
+}
+
+/* --- Focus (клавиатура) --- */
+.ds-button:focus-visible {
+  outline: var(--border-2px) solid var(--buttons-primary-content-default);
+  outline-offset: var(--border-2px);
+}
+
+/* --- Спиннер --- */
+.ds-button__spinner {
+  display: none;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  inline-size: var(--num-16);
+  block-size: var(--num-16);
+  color: var(--buttons-primary-content-loading); /* currentColor для SVG */
+}
+
+.ds-button[data-state="loading"] .ds-button__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-button__spinner svg {
+  display: block;
+  inline-size: var(--num-16);
+  block-size: var(--num-16);
+  animation: ds-button-spin 0.7s linear infinite;
+}
+
+@keyframes ds-button-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-button__spinner svg {
+    animation-duration: 1.6s;
+  }
+}
