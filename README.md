@@ -22,8 +22,13 @@
 
 - [Button — интерактивный preview с переключением Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/button/preview.html)
 - [Input — интерактивный preview с XL/L/M, состояниями и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/input/preview.html)
+- [Label — интерактивный preview и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/label/preview.html)
 - [Input Number — интерактивный stepper, states matrix и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/input-number/preview.html)
+- [Clipboard and Hints — clipboard status + hint, Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/clipboard-and-hints/preview.html)
 - [Comments — интерактивный editor + CommentsBar, states matrix и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/comments/preview.html)
+- [Badge — Error / Info / Counter / Done, Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/badge/preview.html)
+- [Dropdown — интерактивный выбор, L/M, states matrix и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/dropdown/preview.html)
+- [Autocomplete — интерактивный список, keyboard navigation и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/autocomplete/preview.html)
 
 Каждый реализованный компонент должен иметь собственный `preview.html`, доступный через GitHub Pages для визуальной проверки вариантов, состояний, размеров и тем.
 
