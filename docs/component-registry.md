@@ -6,7 +6,7 @@
 
 | Figma | GitHub path | States | Status | Version |
 |---|---|---|---|---|
-| Button | `components/actions/button/` | Default, Hover, Pressed, Loading, Disabled | Ready (migration pending) | 0.1 |
+| Button | `components/button/` | Default, Hover, Pressed, Loading, Disabled; Light/Dark preview | Ready | 0.1 |
 | Input | `components/input/` | — | Planned | — |
 | Label | `components/label/` | — | Planned | — |
 | Input Number | `components/input-number/` | — | Planned | — |
