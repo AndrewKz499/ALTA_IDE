@@ -1,0 +1,35 @@
+name: Generate remaining AltaIDE components
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/generate-remaining-components.yml'
+      - 'scripts/generate_remaining_components.py'
+      - 'scripts/.remaining_payload_*'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Generate components
+        run: python scripts/generate_remaining_components.py
+      - name: Remove one-shot generator
+        run: rm -f scripts/.remaining_payload_* scripts/generate_remaining_components.py .github/workflows/generate-remaining-components.yml
+      - name: Commit generated components
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet && exit 0
+          git commit -m "feat: implement remaining AltaIDE components"
+          git push
