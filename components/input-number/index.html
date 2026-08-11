@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Input Number — AltaIDE DS</title>
+  <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="./input-number.css" />
+</head>
+<body>
+  <div class="ds-input-number">
+    <input class="ds-input-number__control" type="text" inputmode="decimal" value="0" step="1" aria-label="Числовое значение" />
+    <span class="ds-input-number__steppers" aria-hidden="false">
+      <button class="ds-input-number__step ds-input-number__step--up" type="button" tabindex="-1" aria-label="Увеличить значение"></button>
+      <button class="ds-input-number__step ds-input-number__step--down" type="button" tabindex="-1" aria-label="Уменьшить значение"></button>
+    </span>
+  </div>
+  <script src="./input-number.js"></script>
+</body>
+</html>
