@@ -8,13 +8,13 @@
 |---|---|---|---|---|
 | Button | `components/button/` | Default, Hover, Pressed, Loading, Disabled; Light/Dark preview | Ready | 0.1 |
 | Input | `components/input/` | Default_Placeholder, Default_Filled, Hover_Placeholder, Hover, Edit, EditBlue, Invalid, Hover_Invalid, Edit_Invalid, Disable; XL/L/M; Light/Dark preview | Ready | 0.1 |
-| Label | `components/label/` | — | Planned | — |
+| Label | `components/label/` | Base Label 14/20; Light/Dark preview | Ready | 0.1 |
 | Input Number | `components/input-number/` | Default, Hover, Focused, FocusedBlue, Disabled, None, Invalid, Hover_Invalid, Focused_Invalid; 104×28; Light/Dark preview | Ready | 0.1 |
-| Clipboard and Hints | `components/clipboard-and-hints/` | — | Planned | — |
+| Clipboard and Hints | `components/clipboard-and-hints/` | Clipboard + Hints; 24px height; Light/Dark preview | Ready | 0.1 |
 | Comments | `components/comments/` | Comments: Default_Placeholder, Default_Filled, Hover, HoverFilled, Focused, Invalid, Hover_Invalid, Focused_Invalid, Disabled; CommentsBar: Plus, Active, Comment, ActiveOpen, CommentOpen; Light/Dark preview | Ready | 0.1 |
-| Badge | `components/badge/` | — | Planned | — |
-| Dropdown | `components/dropdown/` | — | Planned | — |
-| Autocomplete | `components/autocomplete/` | — | Planned | — |
+| Badge | `components/badge/` | Error, Info, Counter, Done; Light/Dark preview | Ready | 0.1 |
+| Dropdown | `components/dropdown/` | Default, Selected, Hover, HoverFilled, Focused, FocusedFilled, Invalid, Hover_Invalid, Focused_Invalid, Loading, Disable; L/M; Light/Dark preview | Ready | 0.1 |
+| Autocomplete | `components/autocomplete/` | Item: Default, Hover, Active, Info; main popup 427×308; keyboard interactive; Light/Dark preview | Ready | 0.1 |
 | Bit Mask Picker | `components/bit-mask-picker/` | — | Planned | — |
 | Calendar and Time Pickers | `components/calendar-and-time-pickers/` | — | Planned | — |
 | Segmented Control | `components/segmented-control/` | — | Planned | — |
