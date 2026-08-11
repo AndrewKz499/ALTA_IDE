@@ -1,0 +1,2 @@
+/* AltaIDE DS component. Theme-independent DOM; colors/geometry use semantic tokens with safe fallbacks. */
+.ds-progress{display:flex;align-items:center;gap:10px;width:340px}.ds-progress__track{height:6px;flex:1;border-radius:4px;background:var(--progress-bar-background,#3d414b);overflow:hidden}.ds-progress__track span{display:block;height:100%;background:var(--progress-bar-element,#5684dd);transition:width .15s}.ds-progress output{min-width:38px;text-align:right;font-size:12px}.demo-range{margin-top:12px;width:340px}

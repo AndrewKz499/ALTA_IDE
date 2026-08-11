@@ -1,0 +1,2 @@
+/* AltaIDE DS component. Theme-independent DOM; colors/geometry use semantic tokens with safe fallbacks. */
+.ds-link{color:var(--link-content-default,#75a0f4);text-decoration:none;cursor:pointer}.ds-link:hover,.ds-link.is-hover{text-decoration:underline;color:var(--link-content-hover,#a3c2ff)}.ds-link.is-disabled{opacity:.45;cursor:not-allowed}

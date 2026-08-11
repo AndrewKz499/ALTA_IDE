@@ -1,0 +1,2 @@
+/* AltaIDE DS component. Theme-independent DOM; colors/geometry use semantic tokens with safe fallbacks. */
+.ds-breadcrumb{display:flex;align-items:center;gap:var(--breadcrumbs-between,8px);color:var(--breadcrumbs-content-default,#afb2b9);font-size:12px}.ds-breadcrumb a{color:var(--breadcrumbs-content-link,#75a0f4);text-decoration:none}.ds-breadcrumb a:hover{text-decoration:underline}.ds-breadcrumb [aria-current="page"]{color:var(--breadcrumbs-content-active,#fff)}

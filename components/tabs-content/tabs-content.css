@@ -1,0 +1,2 @@
+/* AltaIDE DS component. Theme-independent DOM; colors/geometry use semantic tokens with safe fallbacks. */
+.ds-tabs-content{min-width:360px;background:var(--tabs-content-background);border-top:var(--tabs-content-line-width,2px) solid var(--tabs-content-line)}.ds-tabs-content header{display:flex;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--tabs-content-line)}.ds-tabs-content button{border:0;background:transparent;color:inherit}.ds-tabs-content__body{min-height:120px;padding:16px}

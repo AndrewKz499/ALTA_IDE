@@ -1,0 +1,2 @@
+/* AltaIDE DS component. Theme-independent DOM; colors/geometry use semantic tokens with safe fallbacks. */
+.ds-bottom-bar{display:flex;align-items:center;gap:4px;min-height:36px;padding:var(--bottom-bar-v-padding,8px) var(--bottom-bar-h-padding,16px);background:var(--bottom-bar-background);color:var(--bottom-bar-content)}.ds-bottom-bar button{border:0;background:transparent;color:inherit;padding:4px 10px}.ds-bottom-bar button.is-active{background:var(--tree-levels-background-active,#101f3b);border-radius:4px}.ds-bottom-bar .spacer{flex:1}

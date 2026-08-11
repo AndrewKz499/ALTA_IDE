@@ -1,0 +1,2 @@
+/* AltaIDE DS component. Theme-independent DOM; colors/geometry use semantic tokens with safe fallbacks. */
+.ds-spinner{width:20px;height:20px;border:3px solid var(--color-dark-gray-10,#585e6c);border-top-color:var(--buttons-primary-background-default,#5684dd);border-radius:50%;animation:spin .8s linear infinite}.ds-spinner.is-small{width:16px;height:16px;border-width:2px}.ds-spinner.is-large{width:28px;height:28px;border-width:4px}.ds-spinner.is-paused{animation-play-state:paused}@keyframes spin{to{transform:rotate(360deg)}}
