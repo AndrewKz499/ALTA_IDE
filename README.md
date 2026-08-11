@@ -21,6 +21,7 @@
 ## Примеры компонентов
 
 - [Button — интерактивный preview с переключением Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/button/preview.html)
+- [Input — интерактивный preview с XL/L/M, состояниями и Light / Dark](https://andrewkz499.github.io/ALTA_IDE/components/input/preview.html)
 
 Каждый реализованный компонент должен иметь собственный `preview.html`, доступный через GitHub Pages для визуальной проверки вариантов, состояний, размеров и тем.
 
