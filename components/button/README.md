@@ -6,7 +6,7 @@
 
 [▶ Открыть живой Preview Button (Light / Dark)](https://andrewkz499.github.io/ALTA_IDE/components/button/preview.html)
 
-В Preview показаны размеры L/M, состояния Default/Hover/Pressed/Loading/Disabled и варианты icon none/left/right/only. Переключатель **Light / Dark** меняет `document.documentElement.dataset.theme`, поэтому DOM и CSS Button остаются едиными, а цветовые значения переключаются через `tokens/tokens.css`.
+В верхней части Preview находится интерактивный пример реальной кнопки. Ниже расположена статическая матрица размеров, состояний и вариантов иконок. Такой порядок используется как общий формат preview компонентов AltaIDE DS.
 
 ## Файлы
 
@@ -15,7 +15,7 @@
 | `index.html` | Эталонная разметка |
 | `button.css` | Стили компонента через semantic tokens |
 | `button.js` | Loading и accessibility helpers |
-| `preview.html` | Живой визуальный стенд компонента с Light/Dark switch |
+| `preview.html` | Интерактивный пример + матрица состояний + Light/Dark switch |
 | `assets/icons/` | Исходники demo-иконок |
 
 ## Работа компонента
@@ -42,6 +42,10 @@
 | Loading | `data-state="loading"`; JS синхронизирует `aria-busy` и блокирует активацию |
 | Disabled | Нативный `disabled` |
 | Focus | `:focus-visible` |
+
+## Интерактивный пример
+
+В верхней части Preview размещена настоящая Button. Она поддерживает hover, focus, pressed и click. Счётчик нажатий рядом подтверждает срабатывание действия и существует только как demo-логика preview.
 
 ## Темизация
 
