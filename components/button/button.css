@@ -1,0 +1,107 @@
+/* =====================================================================
+   Button (Primary) — ALTA IDE
+   Источник: Figma AltaIDE/ButtonPrimary (node 185100:882)
+   Только токены из tokens/tokens.css. Все селекторы — под .ds-button.
+   ===================================================================== */
+
+.ds-button {
+  --_font-size: var(--font-size-1);
+  --_line-height: var(--line-height-0);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--buttons-between-padding);
+  box-sizing: border-box;
+  padding-block: var(--buttons-primary-v-padding);
+  padding-inline: var(--buttons-h-padding);
+  border: 0;
+  border-radius: var(--buttons-radius);
+  background: var(--buttons-primary-background-default);
+  color: var(--buttons-primary-content-default);
+  font-family: var(--font-family-rubik);
+  font-size: var(--_font-size);
+  font-weight: 400;
+  line-height: var(--_line-height);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.ds-button[data-size="m"] {
+  --_font-size: var(--font-size-0);
+  --_line-height: var(--line-height-7);
+}
+
+.ds-button__label { white-space: nowrap; }
+
+.ds-button__icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  block-size: var(--_line-height);
+}
+
+.ds-button__icon svg,
+.ds-button__spinner svg {
+  display: block;
+  inline-size: var(--num-16);
+  block-size: var(--num-16);
+}
+
+.ds-button[data-icon="only"] {
+  padding-inline: var(--buttons-primary-v-padding);
+  aspect-ratio: 1 / 1;
+}
+
+.ds-button[data-icon="only"] .ds-button__label { display: none; }
+
+.ds-button:hover { background: var(--buttons-primary-background-hover); }
+.ds-button:active { background: var(--buttons-primary-background-pressed); }
+
+.ds-button[data-state="loading"] {
+  background: var(--buttons-primary-background-loading);
+  color: var(--buttons-primary-content-loading);
+  pointer-events: none;
+}
+
+.ds-button[data-state="loading"] .ds-button__label,
+.ds-button[data-state="loading"] .ds-button__icon { visibility: hidden; }
+
+.ds-button:disabled {
+  background: var(--buttons-primary-background-disabled);
+  color: var(--buttons-primary-content-disabled);
+  cursor: not-allowed;
+}
+
+.ds-button:focus-visible {
+  outline: var(--border-2px) solid var(--buttons-primary-content-default);
+  outline-offset: var(--border-2px);
+}
+
+.ds-button__spinner {
+  display: none;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  inline-size: var(--num-16);
+  block-size: var(--num-16);
+  color: var(--buttons-primary-content-loading);
+}
+
+.ds-button[data-state="loading"] .ds-button__spinner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-button__spinner svg { animation: ds-button-spin 0.7s linear infinite; }
+
+@keyframes ds-button-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-button__spinner svg { animation-duration: 1.6s; }
+}
