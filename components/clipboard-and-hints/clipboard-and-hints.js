@@ -1,0 +1,1 @@
+(function(){function show(el,ms){el.hidden=false;clearTimeout(el._hideTimer);el._hideTimer=setTimeout(function(){el.hidden=true},ms||1800)}window.DSClipboardHint={show:show}})();
