@@ -7,7 +7,7 @@
 | Figma | GitHub path | States | Status | Version |
 |---|---|---|---|---|
 | Button | `components/button/` | Default, Hover, Pressed, Loading, Disabled; Light/Dark preview | Ready | 0.1 |
-| Input | `components/input/` | — | Planned | — |
+| Input | `components/input/` | Default_Placeholder, Default_Filled, Hover_Placeholder, Hover, Edit, EditBlue, Invalid, Hover_Invalid, Edit_Invalid, Disable; XL/L/M; Light/Dark preview | Ready | 0.1 |
 | Label | `components/label/` | — | Planned | — |
 | Input Number | `components/input-number/` | — | Planned | — |
 | Clipboard and Hints | `components/clipboard-and-hints/` | — | Planned | — |
