@@ -9,7 +9,7 @@
 | Button | `components/button/` | Default, Hover, Pressed, Loading, Disabled; Light/Dark preview | Ready | 0.1 |
 | Input | `components/input/` | Default_Placeholder, Default_Filled, Hover_Placeholder, Hover, Edit, EditBlue, Invalid, Hover_Invalid, Edit_Invalid, Disable; XL/L/M; Light/Dark preview | Ready | 0.1 |
 | Label | `components/label/` | — | Planned | — |
-| Input Number | `components/input-number/` | — | Planned | — |
+| Input Number | `components/input-number/` | Default, Hover, Focused, FocusedBlue, Disabled, None, Invalid, Hover_Invalid, Focused_Invalid; 104×28; Light/Dark preview | Ready | 0.1 |
 | Clipboard and Hints | `components/clipboard-and-hints/` | — | Planned | — |
 | Comments | `components/comments/` | — | Planned | — |
 | Badge | `components/badge/` | — | Planned | — |
