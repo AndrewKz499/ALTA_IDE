@@ -11,7 +11,7 @@
 | Label | `components/label/` | — | Planned | — |
 | Input Number | `components/input-number/` | Default, Hover, Focused, FocusedBlue, Disabled, None, Invalid, Hover_Invalid, Focused_Invalid; 104×28; Light/Dark preview | Ready | 0.1 |
 | Clipboard and Hints | `components/clipboard-and-hints/` | — | Planned | — |
-| Comments | `components/comments/` | — | Planned | — |
+| Comments | `components/comments/` | Comments: Default_Placeholder, Default_Filled, Hover, HoverFilled, Focused, Invalid, Hover_Invalid, Focused_Invalid, Disabled; CommentsBar: Plus, Active, Comment, ActiveOpen, CommentOpen; Light/Dark preview | Ready | 0.1 |
 | Badge | `components/badge/` | — | Planned | — |
 | Dropdown | `components/dropdown/` | — | Planned | — |
 | Autocomplete | `components/autocomplete/` | — | Planned | — |
