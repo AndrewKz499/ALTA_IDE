@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Input Number Preview — AltaIDE DS</title>
+  <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="./input-number.css" />
+  <style>
+    * { box-sizing: border-box; }
+    body { margin:0; padding:24px; font-family:var(--font-family-rubik),sans-serif; }
+    html[data-theme="dark"] body { background:var(--color-dark-gray-15); color:var(--color-dark-gray-4); }
+    html[data-theme="light"] body { background:var(--color-light-gray-1); color:var(--color-light-gray-12); }
+    .preview-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:28px; }
+    .preview-head h1 { margin:0; font-size:20px; line-height:28px; }
+    .preview-head p { margin:2px 0 0; font-size:12px; line-height:16px; opacity:.75; }
+    .theme-switch { display:inline-flex; gap:4px; padding:4px; border:1px solid currentColor; border-radius:6px; }
+    .theme-switch button { border:0; border-radius:4px; padding:6px 10px; font:inherit; cursor:pointer; }
+    html[data-theme="dark"] .theme-switch button { background:var(--color-dark-gray-13); color:var(--color-dark-white); }
+    html[data-theme="light"] .theme-switch button { background:var(--color-light-gray-3); color:var(--color-light-gray-12); }
+    .theme-switch button[aria-pressed="true"] { outline:2px solid currentColor; }
+
+    .interactive { margin-bottom:32px; }
+    .interactive h2, .states h2 { margin:0 0 6px; font-size:16px; line-height:24px; }
+    .interactive p, .states > p { margin:0 0 16px; font-size:12px; line-height:16px; opacity:.75; }
+    .interactive-row { display:flex; align-items:flex-start; gap:16px; }
+    .interactive-message { min-height:16px; margin-top:4px; font-size:12px; line-height:16px; opacity:.75; }
+    .separator { margin:0 0 24px; border:0; border-top:1px solid currentColor; opacity:.55; }
+
+    .matrix { display:grid; grid-template-columns:150px 104px; gap:14px 28px; align-items:center; }
+    .row-head { font-size:11px; line-height:16px; text-transform:uppercase; text-align:right; opacity:.72; }
+    .cell { position:relative; width:104px; height:28px; }
+
+    .demo-force-hover .ds-input-number:not([data-invalid="true"]):not([data-disabled="true"]) {
+      border-color:var(--input-number-border-hover);
+      background:var(--input-number-background-hover);
+    }
+    .demo-force-focus .ds-input-number:not([data-invalid="true"]):not([data-disabled="true"]) {
+      border-color:var(--input-number-border-focused);
+      background:var(--input-number-background-focused);
+    }
+    .demo-force-invalid .ds-input-number {
+      border-color:var(--input-number-border-invalid);
+      background:var(--input-number-background-invalid);
+    }
+    .demo-selection { position:relative; }
+    .demo-selection .ds-input-number__control { color:transparent; }
+    .demo-selection-text {
+      position:absolute;
+      left:8px;
+      top:4px;
+      z-index:2;
+      background:var(--input-number-content-bg);
+      color:var(--input-number-content-focused-blue);
+      font-size:var(--font-size-1);
+      line-height:var(--line-height-0);
+      pointer-events:none;
+    }
+  </style>
+</head>
+<body>
+  <header class="preview-head">
+    <div>
+      <h1>Input Number</h1>
+      <p>AltaIDE/InputNumber · Figma node 185373:1753 · 104 × 28</p>
+    </div>
+    <div class="theme-switch" aria-label="Тема">
+      <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+      <button type="button" data-set-theme="dark" aria-pressed="true">Dark</button>
+    </div>
+  </header>
+
+  <section class="interactive">
+    <h2>Interactive component</h2>
+    <p>Введите число или используйте стрелки. Demo-диапазон: от −10 до 10, шаг 1.</p>
+    <div class="interactive-row">
+      <div>
+        <div class="ds-input-number" id="interactive-number">
+          <input class="ds-input-number__control" id="interactive-control" type="text" inputmode="decimal" value="0" min="-10" max="10" step="1" aria-label="Числовое значение" aria-describedby="interactive-message" />
+          <span class="ds-input-number__steppers">
+            <button class="ds-input-number__step ds-input-number__step--up" type="button" tabindex="-1" aria-label="Увеличить значение"></button>
+            <button class="ds-input-number__step ds-input-number__step--down" type="button" tabindex="-1" aria-label="Уменьшить значение"></button>
+          </span>
+        </div>
+        <div class="interactive-message" id="interactive-message">Используйте стрелки или введите число.</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="separator" />
+
+  <section class="states">
+    <h2>States matrix</h2>
+    <p>Все состояния базового Component Set из Figma.</p>
+    <div class="matrix" id="matrix"></div>
+  </section>
+
+  <script src="./input-number.js"></script>
+  <script>
+    (function () {
+      var states = [
+        { label:'Default', value:'0' },
+        { label:'Hover', value:'0', cls:'demo-force-hover', steppers:true },
+        { label:'Focused', value:'0', cls:'demo-force-focus', steppers:true },
+        { label:'FocusedBlue', value:'0', cls:'demo-force-focus demo-selection', steppers:true, selection:true },
+        { label:'Disabled', value:'0', disabled:true },
+        { label:'None', value:'', none:true },
+        { label:'Invalid', value:'0', invalid:true },
+        { label:'Hover_Invalid', value:'0', invalid:true, cls:'demo-force-invalid', steppers:true },
+        { label:'Focused_Invalid', value:'0', invalid:true, cls:'demo-force-invalid', steppers:true }
+      ];
+
+      function markup(state) {
+        var rootAttrs = '';
+        var inputAttrs = '';
+        if (state.invalid) rootAttrs += ' data-invalid="true"';
+        if (state.disabled) { rootAttrs += ' data-disabled="true"'; inputAttrs += ' disabled'; }
+        if (state.none) rootAttrs += ' data-state="none"';
+        if (state.steppers) rootAttrs += ' data-show-steppers="true"';
+        var overlay = state.selection ? '<span class="demo-selection-text">0</span>' : '';
+        return '<div class="cell ' + (state.cls || '') + '">' +
+          '<div class="ds-input-number"' + rootAttrs + '>' +
+            '<input class="ds-input-number__control" type="text" inputmode="decimal" value="' + state.value + '" aria-label="' + state.label + '"' + inputAttrs + ' />' +
+            '<span class="ds-input-number__steppers">' +
+              '<button class="ds-input-number__step ds-input-number__step--up" type="button" tabindex="-1" aria-label="Увеличить значение"></button>' +
+              '<button class="ds-input-number__step ds-input-number__step--down" type="button" tabindex="-1" aria-label="Уменьшить значение"></button>' +
+            '</span>' + overlay +
+          '</div>' +
+        '</div>';
+      }
+
+      var html = '';
+      states.forEach(function (state) {
+        html += '<div class="row-head">' + state.label + '</div>' + markup(state);
+      });
+      document.getElementById('matrix').innerHTML = html;
+
+      if (window.DSInputNumber) window.DSInputNumber.init(document.getElementById('matrix'));
+
+      document.querySelectorAll('[data-set-theme]').forEach(function (button) {
+        button.addEventListener('click', function () {
+          var theme = button.getAttribute('data-set-theme');
+          document.documentElement.dataset.theme = theme;
+          document.querySelectorAll('[data-set-theme]').forEach(function (item) {
+            item.setAttribute('aria-pressed', String(item === button));
+          });
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
