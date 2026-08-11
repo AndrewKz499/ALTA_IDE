@@ -9,57 +9,184 @@
   <link rel="stylesheet" href="./button.css" />
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 24px; font-family: var(--font-family-rubik), system-ui, sans-serif; }
+    body { margin: 0; font-family: var(--font-family-rubik), system-ui, sans-serif; }
     html[data-theme="dark"] body { background: var(--color-dark-gray-15); color: var(--color-dark-gray-7); }
     html[data-theme="light"] body { background: var(--color-light-gray-1); color: var(--color-light-gray-12); }
-    .preview-head { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px; }
-    h1 { margin:0; font-size:20px; }
-    .theme-switch { display:inline-flex; gap:4px; padding:4px; border:1px solid currentColor; border-radius:6px; }
-    .theme-switch button { font:inherit; padding:6px 10px; border:0; border-radius:4px; cursor:pointer; }
-    html[data-theme="dark"] .theme-switch button { background:var(--color-dark-gray-13); color:var(--color-dark-white); }
-    html[data-theme="light"] .theme-switch button { background:var(--color-light-gray-3); color:var(--color-light-gray-12); }
-    .theme-switch button[aria-pressed="true"] { outline:2px solid currentColor; }
-    .size-block { margin-bottom:32px; }
-    .size-block h2 { font-size:14px; margin:0 0 12px; }
-    .grid { display:grid; grid-template-columns:120px repeat(4, minmax(120px,1fr)); gap:12px 16px; align-items:center; overflow:auto; }
-    .col-h,.row-h { font-size:11px; text-transform:uppercase; }
-    .row-h { text-align:right; }
-    .cell { display:flex; }
-    .cell[data-force="hover"] .ds-button:not(:disabled):not([data-state="loading"]) { background:var(--buttons-primary-background-hover); }
-    .cell[data-force="pressed"] .ds-button:not(:disabled):not([data-state="loading"]) { background:var(--buttons-primary-background-pressed); }
+
+    .component-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 20px;
+      border-bottom: 1px solid currentColor;
+    }
+    .tabs { display: inline-flex; gap: 4px; }
+    .tab {
+      border: 0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font: inherit;
+      font-weight: 500;
+      cursor: pointer;
+      background: transparent;
+      color: inherit;
+    }
+    .tab[aria-selected="true"] { outline: 2px solid currentColor; }
+
+    .theme-switch { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid currentColor; border-radius: 6px; }
+    .theme-switch button { font: inherit; padding: 6px 10px; border: 0; border-radius: 4px; cursor: pointer; }
+    html[data-theme="dark"] .theme-switch button { background: var(--color-dark-gray-13); color: var(--color-dark-white); }
+    html[data-theme="light"] .theme-switch button { background: var(--color-light-gray-3); color: var(--color-light-gray-12); }
+    .theme-switch button[aria-pressed="true"] { outline: 2px solid currentColor; }
+
+    .panel { padding: 24px; }
+    .panel[hidden] { display: none; }
+    .preview-head { margin-bottom: 24px; }
+    h1 { margin: 0; font-size: 20px; }
+    .subtitle { margin-top: 4px; font-size: 12px; opacity: .8; }
+    .size-block { margin-bottom: 32px; }
+    .size-block h2 { font-size: 14px; margin: 0 0 12px; }
+    .grid { display: grid; grid-template-columns: 120px repeat(4, minmax(120px, 1fr)); gap: 12px 16px; align-items: center; overflow: auto; }
+    .col-h, .row-h { font-size: 11px; text-transform: uppercase; }
+    .row-h { text-align: right; }
+    .cell { display: flex; }
+    .cell[data-force="hover"] .ds-button:not(:disabled):not([data-state="loading"]) { background: var(--buttons-primary-background-hover); }
+    .cell[data-force="pressed"] .ds-button:not(:disabled):not([data-state="loading"]) { background: var(--buttons-primary-background-pressed); }
+
+    .readme { max-width: 880px; line-height: 1.55; }
+    .readme h2 { margin: 28px 0 10px; font-size: 18px; }
+    .readme p { margin: 8px 0; }
+    .readme code { font-family: var(--font-family-jetbrains-mono), ui-monospace, monospace; }
+    .readme table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+    .readme th, .readme td { padding: 8px 10px; border: 1px solid currentColor; text-align: left; vertical-align: top; }
+    .readme ul { padding-left: 20px; }
   </style>
 </head>
 <body>
-  <header class="preview-head">
-    <div><h1>Button</h1><div>Primary · все состояния и размеры</div></div>
+  <nav class="component-nav" aria-label="Документация компонента">
+    <div class="tabs" role="tablist" aria-label="Раздел">
+      <button class="tab" type="button" role="tab" id="tab-preview" aria-selected="true" aria-controls="panel-preview" data-tab="preview">Preview</button>
+      <button class="tab" type="button" role="tab" id="tab-readme" aria-selected="false" aria-controls="panel-readme" data-tab="readme">README</button>
+    </div>
     <div class="theme-switch" aria-label="Тема">
       <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
       <button type="button" data-set-theme="dark" aria-pressed="true">Dark</button>
     </div>
-  </header>
-  <main id="root"></main>
+  </nav>
+
+  <section class="panel" id="panel-preview" role="tabpanel" aria-labelledby="tab-preview">
+    <header class="preview-head">
+      <h1>Button</h1>
+      <div class="subtitle">Primary · все состояния и размеры · Light / Dark</div>
+    </header>
+    <main id="root"></main>
+  </section>
+
+  <section class="panel readme" id="panel-readme" role="tabpanel" aria-labelledby="tab-readme" hidden>
+    <h1>Button</h1>
+    <p>Кнопка AltaIDE DS. Канонический путь: <code>components/button/</code>.</p>
+
+    <h2>Назначение</h2>
+    <p>Button используется для запуска пользовательского действия. Компонент имеет одну DOM-структуру и один набор CSS-правил для обеих тем.</p>
+
+    <h2>Размеры и варианты</h2>
+    <ul>
+      <li><code>data-size="l"</code> — размер L, типографика 14/20.</li>
+      <li><code>data-size="m"</code> — размер M, типографика 12/16.</li>
+      <li><code>data-icon="none"</code> — без иконки.</li>
+      <li><code>data-icon="left"</code> — иконка слева.</li>
+      <li><code>data-icon="right"</code> — иконка справа.</li>
+      <li><code>data-icon="only"</code> — только иконка; требуется доступное имя через <code>aria-label</code> или <code>aria-labelledby</code>.</li>
+    </ul>
+
+    <h2>Состояния</h2>
+    <table>
+      <thead><tr><th>Состояние</th><th>Реализация</th></tr></thead>
+      <tbody>
+        <tr><td>Default</td><td>Базовое состояние.</td></tr>
+        <tr><td>Hover</td><td><code>:hover</code>.</td></tr>
+        <tr><td>Pressed</td><td><code>:active</code>.</td></tr>
+        <tr><td>Loading</td><td><code>data-state="loading"</code>; JS синхронизирует <code>aria-busy</code> и блокирует активацию.</td></tr>
+        <tr><td>Disabled</td><td>Нативный атрибут <code>disabled</code>.</td></tr>
+        <tr><td>Focus</td><td><code>:focus-visible</code> для клавиатурной навигации.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Темизация</h2>
+    <p>Light и Dark не являются отдельными версиями компонента. Переключатель в правом верхнем углу меняет <code>document.documentElement.dataset.theme</code> между <code>light</code> и <code>dark</code>. Button использует семантические переменные <code>--buttons-*</code>, а их значения поступают из <code>tokens/tokens.css</code>.</p>
+
+    <h2>Файлы</h2>
+    <table>
+      <thead><tr><th>Файл</th><th>Назначение</th></tr></thead>
+      <tbody>
+        <tr><td><code>index.html</code></td><td>Эталонная разметка.</td></tr>
+        <tr><td><code>button.css</code></td><td>Стили компонента через semantic tokens.</td></tr>
+        <tr><td><code>button.js</code></td><td>Loading и accessibility helpers.</td></tr>
+        <tr><td><code>preview.html</code></td><td>Живой стенд и документация компонента.</td></tr>
+        <tr><td><code>README.md</code></td><td>Markdown-документация в репозитории.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
   <script src="./button.js"></script>
   <script>
     (function () {
-      var SIZES=[{k:"l",t:"Size L (14/20)"},{k:"m",t:"Size M (12/16)"}];
-      var STATES=["default","hover","pressed","loading","disabled"];
-      var ICONS=["none","left","right","only"];
-      var ICON='<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
-      var SPINNER='<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/><path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>';
-      function icon(){return '<span class="ds-button__icon" aria-hidden="true">'+ICON+'</span>';}
-      function spinner(){return '<span class="ds-button__spinner" aria-hidden="true">'+SPINNER+'</span>';}
-      function button(size,state,ic){
-        var a=['class="ds-button"','type="button"','data-size="'+size+'"','data-icon="'+ic+'"'];
-        if(state==="loading")a.push('data-state="loading"');
-        if(state==="disabled")a.push('disabled');
-        if(ic==="only")a.push('aria-label="Действие"');
-        var inner=ic==="left"?icon()+'<span class="ds-button__label">Кнопка</span>':ic==="right"?'<span class="ds-button__label">Кнопка</span>'+icon():ic==="only"?icon():'<span class="ds-button__label">Кнопка</span>';
-        return '<button '+a.join(' ')+'>'+inner+spinner()+'</button>';
+      var SIZES = [{ k: "l", t: "Size L (14/20)" }, { k: "m", t: "Size M (12/16)" }];
+      var STATES = ["default", "hover", "pressed", "loading", "disabled"];
+      var ICONS = ["none", "left", "right", "only"];
+      var ICON = '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><path d="M8 2.5v11M2.5 8h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+      var SPINNER = '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.75" opacity=".3"/><path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/></svg>';
+
+      function icon() { return '<span class="ds-button__icon" aria-hidden="true">' + ICON + '</span>'; }
+      function spinner() { return '<span class="ds-button__spinner" aria-hidden="true">' + SPINNER + '</span>'; }
+      function button(size, state, ic) {
+        var a = ['class="ds-button"', 'type="button"', 'data-size="' + size + '"', 'data-icon="' + ic + '"'];
+        if (state === "loading") a.push('data-state="loading"');
+        if (state === "disabled") a.push('disabled');
+        if (ic === "only") a.push('aria-label="Действие"');
+        var inner = ic === "left" ? icon() + '<span class="ds-button__label">Кнопка</span>' : ic === "right" ? '<span class="ds-button__label">Кнопка</span>' + icon() : ic === "only" ? icon() : '<span class="ds-button__label">Кнопка</span>';
+        return '<button ' + a.join(' ') + '>' + inner + spinner() + '</button>';
       }
-      var html='';
-      SIZES.forEach(function(s){html+='<section class="size-block"><h2>'+s.t+'</h2><div class="grid"><div></div>';ICONS.forEach(function(i){html+='<div class="col-h">icon: '+i+'</div>';});STATES.forEach(function(st){html+='<div class="row-h">'+st+'</div>';ICONS.forEach(function(i){var f=(st==="hover"||st==="pressed")?' data-force="'+st+'"':'';html+='<div class="cell"'+f+'>'+button(s.k,st,i)+'</div>';});});html+='</div></section>';});
-      var root=document.getElementById('root'); root.innerHTML=html; if(window.DSButton)window.DSButton.init(root);
-      document.querySelectorAll('[data-set-theme]').forEach(function(btn){btn.addEventListener('click',function(){var theme=btn.getAttribute('data-set-theme');document.documentElement.dataset.theme=theme;document.querySelectorAll('[data-set-theme]').forEach(function(b){b.setAttribute('aria-pressed',String(b===btn));});});});
+
+      var html = "";
+      SIZES.forEach(function (s) {
+        html += '<section class="size-block"><h2>' + s.t + '</h2><div class="grid"><div></div>';
+        ICONS.forEach(function (i) { html += '<div class="col-h">icon: ' + i + '</div>'; });
+        STATES.forEach(function (st) {
+          html += '<div class="row-h">' + st + '</div>';
+          ICONS.forEach(function (i) {
+            var f = (st === "hover" || st === "pressed") ? ' data-force="' + st + '"' : "";
+            html += '<div class="cell"' + f + '>' + button(s.k, st, i) + '</div>';
+          });
+        });
+        html += '</div></section>';
+      });
+
+      var root = document.getElementById("root");
+      root.innerHTML = html;
+      if (window.DSButton) window.DSButton.init(root);
+
+      document.querySelectorAll('[data-set-theme]').forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          var theme = btn.getAttribute("data-set-theme");
+          document.documentElement.dataset.theme = theme;
+          document.querySelectorAll('[data-set-theme]').forEach(function (b) {
+            b.setAttribute("aria-pressed", String(b === btn));
+          });
+        });
+      });
+
+      document.querySelectorAll('[data-tab]').forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          var target = tab.getAttribute("data-tab");
+          document.querySelectorAll('[data-tab]').forEach(function (t) {
+            t.setAttribute("aria-selected", String(t === tab));
+          });
+          document.getElementById("panel-preview").hidden = target !== "preview";
+          document.getElementById("panel-readme").hidden = target !== "readme";
+        });
+      });
     })();
   </script>
 </body>
