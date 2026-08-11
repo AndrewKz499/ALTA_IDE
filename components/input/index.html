@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Input — AltaIDE DS</title>
+  <link rel="stylesheet" href="../../assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="../../tokens/tokens.css" />
+  <link rel="stylesheet" href="./input.css" />
+</head>
+<body>
+  <!-- Placeholder / Size XL -->
+  <label class="ds-input" data-size="xl">
+    <input class="ds-input__control" type="text" placeholder="Text" aria-describedby="input-xl-hint" />
+    <span class="ds-input__hint" id="input-xl-hint">Hint text</span>
+  </label>
+
+  <!-- Filled / Size L -->
+  <label class="ds-input" data-size="l">
+    <input class="ds-input__control" type="text" value="Text" aria-describedby="input-l-hint" />
+    <span class="ds-input__hint" id="input-l-hint">Hint text</span>
+  </label>
+
+  <!-- Invalid / Size M -->
+  <label class="ds-input" data-size="m" data-invalid="true">
+    <input class="ds-input__control" type="text" value="Text" aria-invalid="true" aria-describedby="input-m-hint" />
+    <span class="ds-input__hint" id="input-m-hint">Hint text</span>
+  </label>
+
+  <!-- Disabled -->
+  <label class="ds-input" data-size="l">
+    <input class="ds-input__control" type="text" value="Text" disabled aria-describedby="input-disabled-hint" />
+    <span class="ds-input__hint" id="input-disabled-hint">Hint text</span>
+  </label>
+</body>
+</html>
