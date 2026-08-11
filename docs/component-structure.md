@@ -6,7 +6,7 @@
 
 `Figma Component → GitHub directory → implementation → preview → documentation`
 
-Новые компоненты создаются непосредственно в `components/<component-name>/` в `kebab-case`.
+Новые компоненты создаются непосредственно в `components/<component-name>/` в `kebab-case`. Дополнительные группирующие директории вроде `actions/` не используются.
 
 ## Контракт реализованного компонента
 
@@ -34,8 +34,10 @@ JS создаётся только если компоненту требует�
 
 Правило: **1 component → 1 DOM → 1 component CSS → 1 component JS → 2 themes through semantic tokens**.
 
-`preview.html` каждого реализованного компонента должен содержать переключатель Light / Dark, меняющий `document.documentElement.dataset.theme`, и показывать релевантные variants / states / sizes.
+`preview.html` каждого реализованного компонента обязан содержать переключатель Light / Dark, меняющий `document.documentElement.dataset.theme`, и показывать релевантные variants / states / sizes.
 
-## Текущее исключение
+## Как смотреть компонент
 
-`Button` был реализован ранее в `components/actions/button/` с контрактом `template.html` / `demo.html`. Его не перемещаем в рамках scaffolding-задачи, чтобы не ломать рабочий компонент и относительные пути. Миграцию в `components/button/` и `index.html` / `preview.html` выполнять отдельной задачей с проверкой demo/preview и ссылок.
+Локально: открыть `components/<component-name>/preview.html` в браузере.
+
+На GitHub Pages: открыть соответствующий путь `/components/<component-name>/preview.html`.
