@@ -9,13 +9,9 @@
   <link rel="stylesheet" href="./input.css" />
   <style>
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      padding: 24px;
-      font-family: var(--font-family-rubik), sans-serif;
-    }
-    html[data-theme="dark"] body { background: var(--color-dark-gray-15); color: var(--color-dark-gray-4); }
-    html[data-theme="light"] body { background: var(--color-light-gray-1); color: var(--color-light-gray-12); }
+    body { margin:0; padding:24px; font-family:var(--font-family-rubik),sans-serif; }
+    html[data-theme="dark"] body { background:var(--color-dark-gray-15); color:var(--color-dark-gray-4); }
+    html[data-theme="light"] body { background:var(--color-light-gray-1); color:var(--color-light-gray-12); }
     .preview-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:28px; }
     .preview-head h1 { margin:0; font-size:20px; line-height:28px; }
     .preview-head p { margin:2px 0 0; font-size:12px; line-height:16px; opacity:.75; }
@@ -24,150 +20,103 @@
     html[data-theme="dark"] .theme-switch button { background:var(--color-dark-gray-13); color:var(--color-dark-white); }
     html[data-theme="light"] .theme-switch button { background:var(--color-light-gray-3); color:var(--color-light-gray-12); }
     .theme-switch button[aria-pressed="true"] { outline:2px solid currentColor; }
-
-    .matrix {
-      display:grid;
-      grid-template-columns: 150px 302px 248px 162px;
-      gap:14px 28px;
-      align-items:start;
-      min-width: 980px;
-    }
+    .interactive { padding-bottom:24px; margin-bottom:24px; border-bottom:1px solid currentColor; }
+    .interactive h2,.matrix-title { margin:0 0 6px; font-size:16px; }
+    .interactive p,.matrix-note { margin:0 0 16px; font-size:12px; opacity:.75; }
+    .interactive-row { display:flex; align-items:flex-start; gap:16px; flex-wrap:wrap; }
+    .interactive-status { min-height:16px; margin-top:8px; font-size:12px; line-height:16px; }
+    .interactive-status[data-error="true"] { color:var(--input-border-invalid); }
+    .matrix { display:grid; grid-template-columns:150px 302px 248px 162px; gap:14px 28px; align-items:start; min-width:980px; }
     .matrix-wrap { overflow:auto; padding-bottom:16px; }
-    .col-head, .row-head { font-size:11px; line-height:16px; text-transform:uppercase; opacity:.72; }
-    .col-head { padding-bottom:2px; }
+    .col-head,.row-head { font-size:11px; line-height:16px; text-transform:uppercase; opacity:.72; }
     .row-head { text-align:right; padding-top:7px; }
     .demo-cell { position:relative; min-height:46px; }
-
-    /* Preview-only forced visual states. Component CSS itself stays native. */
-    .demo-force-hover .ds-input__control:not(:disabled) {
-      border-color: var(--input-border-hover-filled);
-      background: var(--input-background-hover-filled);
-      color: var(--input-content-hover-filled);
-    }
-    .demo-force-hover .ds-input__control::placeholder { color: var(--input-content-hover); }
-    .demo-force-focus .ds-input__control:not(:disabled) {
-      border-color: var(--input-border-focused);
-      background: var(--input-background-focused);
-      color: var(--input-content-focused);
-    }
-    .demo-force-invalid .ds-input__control,
-    .demo-force-invalid .ds-input__control:hover,
-    .demo-force-invalid .ds-input__control:focus {
-      border-color: var(--input-border-invalid);
-      background: var(--input-background-invalid);
-      color: var(--input-content-invalid);
-    }
-    .demo-force-invalid .ds-input__control::placeholder { color: var(--input-content-invalid); }
+    .demo-force-hover .ds-input__control:not(:disabled) { border-color:var(--input-border-hover-filled); background:var(--input-background-hover-filled); color:var(--input-content-hover-filled); }
+    .demo-force-hover .ds-input__control::placeholder { color:var(--input-content-hover); }
+    .demo-force-focus .ds-input__control:not(:disabled) { border-color:var(--input-border-focused); background:var(--input-background-focused); color:var(--input-content-focused); }
+    .demo-force-invalid .ds-input__control,.demo-force-invalid .ds-input__control:hover,.demo-force-invalid .ds-input__control:focus { border-color:var(--input-border-invalid); background:var(--input-background-invalid); color:var(--input-content-invalid); }
+    .demo-force-invalid .ds-input__control::placeholder { color:var(--input-content-invalid); }
     .demo-selection { position:relative; }
-    .demo-selection .ds-input__control { color: transparent; caret-color: transparent; }
-    .demo-selection-text {
-      position:absolute;
-      left:9px;
-      top:4px;
-      z-index:2;
-      pointer-events:none;
-      background:var(--input-content-bg);
-      color:var(--input-content-focused-blue);
-      font-size:var(--font-size-1);
-      line-height:var(--line-height-0);
-      font-weight:400;
-    }
-
-    .interactive {
-      margin-top:36px;
-      padding-top:24px;
-      border-top:1px solid currentColor;
-    }
-    .interactive h2 { margin:0 0 6px; font-size:16px; }
-    .interactive p { margin:0 0 16px; font-size:12px; opacity:.75; }
+    .demo-selection .ds-input__control { color:transparent; caret-color:transparent; }
+    .demo-selection-text { position:absolute; left:9px; top:4px; z-index:2; pointer-events:none; background:var(--input-content-bg); color:var(--input-content-focused-blue); font-size:var(--font-size-1); line-height:var(--line-height-0); font-weight:400; }
   </style>
 </head>
 <body>
   <header class="preview-head">
-    <div>
-      <h1>Input</h1>
-      <p>AltaIDE/Input · Figma node 185124:25 · XL / L / M</p>
-    </div>
+    <div><h1>Input</h1><p>AltaIDE/Input · Figma node 185124:25 · XL / L / M</p></div>
     <div class="theme-switch" aria-label="Тема">
       <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
       <button type="button" data-set-theme="dark" aria-pressed="true">Dark</button>
     </div>
   </header>
 
-  <div class="matrix-wrap">
-    <div class="matrix" id="matrix"></div>
-  </div>
-
   <section class="interactive">
     <h2>Interactive input</h2>
-    <p>Проверьте настоящий hover, focus, выделение текста, ввод и disabled-поведение.</p>
-    <label class="ds-input" data-size="l">
-      <input class="ds-input__control" type="text" value="Text" aria-describedby="interactive-hint" />
-      <span class="ds-input__hint" id="interactive-hint">Hint text</span>
-    </label>
+    <p>Введите текст. Если в значении появляется хотя бы одна цифра, поле показывает Invalid и сообщение об ошибке.</p>
+    <div class="interactive-row">
+      <label class="ds-input" data-size="l" id="interactive-input-wrap">
+        <input class="ds-input__control" id="interactive-input" type="text" placeholder="Введите текст" aria-describedby="interactive-hint interactive-status" />
+        <span class="ds-input__hint" id="interactive-hint">Только буквы и символы без цифр</span>
+      </label>
+    </div>
+    <div class="interactive-status" id="interactive-status" role="status" aria-live="polite"></div>
   </section>
+
+  <h2 class="matrix-title">States matrix</h2>
+  <p class="matrix-note">Статическая сверка всех Figma-состояний и размеров.</p>
+  <div class="matrix-wrap"><div class="matrix" id="matrix"></div></div>
 
   <script>
     (function () {
-      var sizes = [
-        { key: 'xl', label: 'Size XL · 302' },
-        { key: 'l', label: 'Size L · 248' },
-        { key: 'm', label: 'Size M · 162' }
+      var sizes=[{key:'xl',label:'Size XL · 302'},{key:'l',label:'Size L · 248'},{key:'m',label:'Size M · 162'}];
+      var states=[
+        {key:'default-placeholder',label:'Default_Placeholder',placeholder:true},
+        {key:'default-filled',label:'Default_Filled',value:'Text'},
+        {key:'hover-placeholder',label:'Hover_Placeholder',placeholder:true,cls:'demo-force-hover'},
+        {key:'hover-filled',label:'Hover',value:'Text',cls:'demo-force-hover'},
+        {key:'edit',label:'Edit',value:'Text|',cls:'demo-force-focus'},
+        {key:'edit-blue',label:'EditBlue',value:'Text',cls:'demo-force-focus demo-selection',selection:true},
+        {key:'invalid',label:'Invalid',value:'Text',invalid:true},
+        {key:'hover-invalid',label:'Hover_Invalid',value:'Text',invalid:true,cls:'demo-force-hover demo-force-invalid'},
+        {key:'edit-invalid',label:'Edit_Invalid',value:'Text|',invalid:true,cls:'demo-force-focus demo-force-invalid'},
+        {key:'disable',label:'Disable',value:'Text',disabled:true}
       ];
-      var states = [
-        { key: 'default-placeholder', label: 'Default_Placeholder', placeholder: true },
-        { key: 'default-filled', label: 'Default_Filled', value: 'Text' },
-        { key: 'hover-placeholder', label: 'Hover_Placeholder', placeholder: true, cls: 'demo-force-hover' },
-        { key: 'hover-filled', label: 'Hover', value: 'Text', cls: 'demo-force-hover' },
-        { key: 'edit', label: 'Edit', value: 'Text|', cls: 'demo-force-focus' },
-        { key: 'edit-blue', label: 'EditBlue', value: 'Text', cls: 'demo-force-focus demo-selection', selection: true },
-        { key: 'invalid', label: 'Invalid', value: 'Text', invalid: true },
-        { key: 'hover-invalid', label: 'Hover_Invalid', value: 'Text', invalid: true, cls: 'demo-force-hover demo-force-invalid' },
-        { key: 'edit-invalid', label: 'Edit_Invalid', value: 'Text|', invalid: true, cls: 'demo-force-focus demo-force-invalid' },
-        { key: 'disable', label: 'Disable', value: 'Text', disabled: true }
-      ];
-
-      function escapeAttr(value) {
-        return String(value || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+      function escapeAttr(value){return String(value||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+      function inputMarkup(size,state,index){
+        var invalidAttr=state.invalid?' data-invalid="true"':'';
+        var describedBy='hint-'+state.key+'-'+size.key+'-'+index;
+        var attrs=state.placeholder?' placeholder="Text"':' value="'+escapeAttr(state.value)+'"';
+        if(state.disabled)attrs+=' disabled';
+        if(state.invalid)attrs+=' aria-invalid="true"';
+        var selection=state.selection?'<span class="demo-selection-text">Text</span>':'';
+        return '<div class="demo-cell '+(state.cls||'')+'"><label class="ds-input" data-size="'+size.key+'"'+invalidAttr+'><span style="position:relative;display:block"><input class="ds-input__control" type="text"'+attrs+' aria-describedby="'+describedBy+'" />'+selection+'</span><span class="ds-input__hint" id="'+describedBy+'">Hint text</span></label></div>';
       }
+      var matrix=document.getElementById('matrix');
+      var html='<div></div>';
+      sizes.forEach(function(size){html+='<div class="col-head">'+size.label+'</div>';});
+      states.forEach(function(state,stateIndex){html+='<div class="row-head">'+state.label+'</div>';sizes.forEach(function(size){html+=inputMarkup(size,state,stateIndex);});});
+      matrix.innerHTML=html;
 
-      function inputMarkup(size, state, index) {
-        var invalidAttr = state.invalid ? ' data-invalid="true"' : '';
-        var describedBy = 'hint-' + state.key + '-' + size.key + '-' + index;
-        var attrs = state.placeholder
-          ? ' placeholder="Text"'
-          : ' value="' + escapeAttr(state.value) + '"';
-        if (state.disabled) attrs += ' disabled';
-        if (state.invalid) attrs += ' aria-invalid="true"';
-        var selection = state.selection ? '<span class="demo-selection-text">Text</span>' : '';
-        return '<div class="demo-cell ' + (state.cls || '') + '">' +
-          '<label class="ds-input" data-size="' + size.key + '"' + invalidAttr + '>' +
-            '<span style="position:relative;display:block">' +
-              '<input class="ds-input__control" type="text"' + attrs + ' aria-describedby="' + describedBy + '" />' + selection +
-            '</span>' +
-            '<span class="ds-input__hint" id="' + describedBy + '">Hint text</span>' +
-          '</label>' +
-        '</div>';
+      var input=document.getElementById('interactive-input');
+      var wrap=document.getElementById('interactive-input-wrap');
+      var status=document.getElementById('interactive-status');
+      function validate(){
+        var hasDigit=/\d/.test(input.value);
+        if(hasDigit){
+          wrap.setAttribute('data-invalid','true');
+          input.setAttribute('aria-invalid','true');
+          status.textContent='Ошибка: цифры недопустимы.';
+          status.setAttribute('data-error','true');
+        }else{
+          wrap.removeAttribute('data-invalid');
+          input.removeAttribute('aria-invalid');
+          status.textContent=input.value?'Значение корректно.':'';
+          status.removeAttribute('data-error');
+        }
       }
+      input.addEventListener('input',validate);
 
-      var matrix = document.getElementById('matrix');
-      var html = '<div></div>';
-      sizes.forEach(function (size) { html += '<div class="col-head">' + size.label + '</div>'; });
-      states.forEach(function (state, stateIndex) {
-        html += '<div class="row-head">' + state.label + '</div>';
-        sizes.forEach(function (size) { html += inputMarkup(size, state, stateIndex); });
-      });
-      matrix.innerHTML = html;
-
-      document.querySelectorAll('[data-set-theme]').forEach(function (button) {
-        button.addEventListener('click', function () {
-          var theme = button.getAttribute('data-set-theme');
-          document.documentElement.dataset.theme = theme;
-          document.querySelectorAll('[data-set-theme]').forEach(function (item) {
-            item.setAttribute('aria-pressed', String(item === button));
-          });
-        });
-      });
+      document.querySelectorAll('[data-set-theme]').forEach(function(button){button.addEventListener('click',function(){var theme=button.getAttribute('data-set-theme');document.documentElement.dataset.theme=theme;document.querySelectorAll('[data-set-theme]').forEach(function(item){item.setAttribute('aria-pressed',String(item===button));});});});
     })();
   </script>
 </body>
