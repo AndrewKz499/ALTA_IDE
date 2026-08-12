@@ -1,1 +1,186 @@
-.ds-autocomplete{width:427px;max-height:308px;overflow:hidden;border-radius:var(--autocomplete-radius);box-shadow:0 6px 20px #140f0f;background:var(--autocomplete-item-bg-default);font-family:var(--font-family-rubik),sans-serif}.ds-autocomplete__list{max-height:280px;overflow:auto}.ds-autocomplete__item{display:flex;align-items:center;justify-content:space-between;gap:var(--autocomplete-item-padding);width:100%;height:28px;padding:var(--autocomplete-item-padding);border:0;background:var(--autocomplete-item-bg-default);color:var(--autocomplete-item-text-code-default);text-align:left;cursor:pointer}.ds-autocomplete__item:hover,.ds-autocomplete__item[data-state=hover]{background:var(--autocomplete-item-bg-hover)}.ds-autocomplete__item[aria-selected=true],.ds-autocomplete__item[data-state=active]{background:var(--autocomplete-item-bg-active)}.ds-autocomplete__left{display:flex;align-items:center;gap:var(--autocomplete-item-padding);min-width:0}.ds-autocomplete__icon{width:20px;height:20px;flex:0 0 20px;background:url('./assets/var.svg') center/20px 20px no-repeat}.ds-autocomplete__code{font:400 var(--font-size-1)/var(--line-height-0) var(--font-family-jetbrains-mono),monospace;white-space:nowrap}.ds-autocomplete__match{background:var(--autocomplete-item-fill);color:var(--autocomplete-item-text-code-filled)}.ds-autocomplete__vars,.ds-autocomplete__type{color:var(--autocomplete-item-text-code-info);font-size:14px;line-height:20px;white-space:nowrap}.ds-autocomplete__type{font-style:italic;font-weight:300}.ds-autocomplete__info{display:flex;align-items:center;justify-content:space-between;height:28px;padding:var(--autocomplete-item-padding) var(--autocomplete-item-padding) var(--autocomplete-item-padding) var(--autocomplete-item-info-l-padding);background:var(--autocomplete-item-bg-info);color:var(--autocomplete-item-text-code-info);font-size:12px;line-height:20px}.ds-autocomplete-info{padding:var(--autocomplete-info-v-padding) var(--autocomplete-info-h-padding);border-radius:var(--autocomplete-info-radius);background:var(--autocomplete-info-bg);color:var(--autocomplete-info-content)}
+.ds-autocomplete {
+  position: relative;
+  width: 427px;
+  isolation: isolate;
+}
+
+.ds-autocomplete .ds-input {
+  width: 100%;
+}
+
+.ds-autocomplete__anchor {
+  position: relative;
+  width: 100%;
+}
+
+.ds-autocomplete__popup {
+  position: absolute;
+  z-index: 10;
+  top: calc(100% + var(--input-between));
+  left: 0;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: var(--autocomplete-radius);
+  background: var(--autocomplete-item-bg-default);
+  box-shadow: 0 var(--num-6) var(--num-20) var(--autocomplete-item-bg-info);
+}
+
+.ds-autocomplete[data-open="false"] .ds-autocomplete__popup,
+.ds-autocomplete__popup[hidden] {
+  display: none;
+}
+
+.ds-autocomplete__options {
+  max-height: calc(var(--num-28) * 10);
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scrollbar-color: var(--autocomplete-item-text-code-info) var(--autocomplete-item-bg-hover);
+  scrollbar-width: thin;
+}
+
+.ds-autocomplete__options::-webkit-scrollbar {
+  width: var(--num-8);
+}
+
+.ds-autocomplete__options::-webkit-scrollbar-track {
+  border-radius: var(--autocomplete-radius);
+  background: var(--autocomplete-item-bg-hover);
+}
+
+.ds-autocomplete__options::-webkit-scrollbar-thumb {
+  border-radius: var(--autocomplete-radius);
+  background: var(--autocomplete-item-text-code-info);
+}
+
+.ds-autocomplete__item {
+  display: flex;
+  min-height: var(--num-28);
+  align-items: center;
+  gap: var(--autocomplete-item-padding);
+  box-sizing: border-box;
+  padding: var(--autocomplete-item-padding);
+  background: var(--autocomplete-item-bg-default);
+  color: var(--autocomplete-item-text-code-default);
+  cursor: default;
+}
+
+.ds-autocomplete__item:hover,
+.ds-autocomplete__item[data-demo-hover="true"] {
+  background: var(--autocomplete-item-bg-hover);
+}
+
+.ds-autocomplete__item[aria-selected="true"] {
+  background: var(--autocomplete-item-bg-active);
+}
+
+.ds-autocomplete__item-main {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: var(--autocomplete-item-padding);
+}
+
+.ds-autocomplete__icon {
+  display: flex;
+  width: var(--num-20);
+  height: var(--num-20);
+  flex: 0 0 var(--num-20);
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-autocomplete__icon img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.ds-autocomplete__value {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ds-autocomplete__name {
+  overflow: hidden;
+  color: var(--autocomplete-item-text-code-default);
+  font-family: var(--font-family-jetbrains-mono), monospace;
+  font-size: var(--font-size-1);
+  font-weight: 400;
+  line-height: var(--line-height-0);
+  text-overflow: ellipsis;
+}
+
+.ds-autocomplete__match {
+  background: var(--autocomplete-item-fill);
+  color: var(--autocomplete-item-text-code-filled);
+  font: inherit;
+}
+
+.ds-autocomplete__signature {
+  flex: 0 0 auto;
+  padding-inline: var(--input-between);
+  color: var(--autocomplete-item-text-code-info);
+  font-family: var(--font-family-rubik), sans-serif;
+  font-size: var(--font-size-1);
+  font-weight: 400;
+  line-height: var(--line-height-0);
+}
+
+.ds-autocomplete__type {
+  flex: 0 0 auto;
+  color: var(--autocomplete-item-text-code-info);
+  font-family: var(--font-family-rubik), sans-serif;
+  font-size: var(--font-size-1);
+  font-style: italic;
+  font-weight: 300;
+  line-height: var(--line-height-0);
+}
+
+.ds-autocomplete__empty,
+.ds-autocomplete__footer {
+  min-height: var(--num-28);
+  box-sizing: border-box;
+  padding-block: var(--autocomplete-item-padding);
+  color: var(--autocomplete-item-text-code-info);
+  font-family: var(--font-family-rubik), sans-serif;
+  font-size: var(--font-size-0);
+  font-weight: 400;
+  line-height: var(--line-height-0);
+}
+
+.ds-autocomplete__empty {
+  padding-inline: var(--autocomplete-item-info-l-padding);
+  background: var(--autocomplete-item-bg-default);
+}
+
+.ds-autocomplete__empty[hidden] {
+  display: none;
+}
+
+.ds-autocomplete__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: var(--autocomplete-item-info-l-padding);
+  padding-right: var(--autocomplete-item-padding);
+  background: var(--autocomplete-item-bg-info);
+}
+
+.ds-autocomplete__more {
+  display: flex;
+  width: var(--num-20);
+  height: var(--num-20);
+  flex: 0 0 var(--num-20);
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-autocomplete__more img {
+  display: block;
+}

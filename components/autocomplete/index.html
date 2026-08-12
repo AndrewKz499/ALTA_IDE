@@ -1,1 +1,70 @@
-<!doctype html><html lang="ru" data-theme="dark"><head><meta charset="utf-8"><link rel="stylesheet" href="../../assets/fonts/fonts.css"><link rel="stylesheet" href="../../tokens/tokens.css"><link rel="stylesheet" href="./autocomplete.css"></head><body><div class="ds-autocomplete" data-interactive="true" role="listbox"><div class="ds-autocomplete__list"><button class="ds-autocomplete__item" data-value="MyFun1"><span class="ds-autocomplete__left"><span class="ds-autocomplete__icon"></span><span class="ds-autocomplete__code"><span class="ds-autocomplete__match">My</span>Fun1</span><span class="ds-autocomplete__vars">(VAR1, VAR2)</span></span><span class="ds-autocomplete__type">DWORD</span></button><button class="ds-autocomplete__item" data-value="MyFunction"><span class="ds-autocomplete__left"><span class="ds-autocomplete__icon"></span><span class="ds-autocomplete__code"><span class="ds-autocomplete__match">My</span>Function</span><span class="ds-autocomplete__vars">(VAR1, VAR2)</span></span><span class="ds-autocomplete__type">DWORD</span></button></div><div class="ds-autocomplete__info">Enter - Вставить, Tab - заменить</div></div><script src="./autocomplete.js"></script></body></html>
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inputs / Autocomplete</title>
+    <link rel="stylesheet" href="../../tokens/tokens.css">
+    <link rel="stylesheet" href="../input/input.css">
+    <link rel="stylesheet" href="./autocomplete.css">
+  </head>
+  <body>
+    <div class="ds-autocomplete" id="example-autocomplete" data-open="false">
+      <div class="ds-input">
+        <label class="ds-input__label" for="example-autocomplete-input">Label</label>
+
+        <div class="ds-autocomplete__anchor">
+          <input
+            class="ds-input__control ds-autocomplete__control"
+            id="example-autocomplete-input"
+            name="example-autocomplete"
+            type="text"
+            placeholder="Text"
+            autocomplete="off"
+            role="combobox"
+            aria-autocomplete="list"
+            aria-expanded="false"
+            aria-controls="example-autocomplete-listbox"
+            aria-describedby="example-autocomplete-hint"
+          >
+
+          <div
+            class="ds-autocomplete__popup"
+            id="example-autocomplete-listbox"
+            role="listbox"
+            hidden
+          >
+            <div class="ds-autocomplete__options"></div>
+            <div class="ds-autocomplete__empty" role="status" hidden>Ничего не найдено</div>
+            <div class="ds-autocomplete__footer" aria-hidden="true">
+              <span>Enter — Вставить, Tab — заменить</span>
+              <span class="ds-autocomplete__more">
+                <img src="./assets/more.png" alt="">
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <p class="ds-input__hint" id="example-autocomplete-hint">Hint text</p>
+      </div>
+    </div>
+
+    <script src="./autocomplete.js"></script>
+    <script>
+      var autocompleteData = [
+        "MyFun1",
+        "MyFunction",
+        "MyMultivariateDifferentiab",
+        "MyVar",
+        "Var My",
+        "MyNT",
+        "TestMyVar",
+        "MyVariable",
+        "DifferentiabMy",
+        "Var MyTestVar"
+      ];
+
+      new DSAutocomplete(document.querySelector("#example-autocomplete"), autocompleteData);
+    </script>
+  </body>
+</html>

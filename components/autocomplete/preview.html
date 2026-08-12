@@ -1,1 +1,202 @@
-<!doctype html><html lang="ru" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Autocomplete Preview — AltaIDE DS</title><link rel="stylesheet" href="../../assets/fonts/fonts.css"><link rel="stylesheet" href="../../tokens/tokens.css"><link rel="stylesheet" href="./autocomplete.css"><style>*{box-sizing:border-box}body{margin:0;padding:24px;font-family:var(--font-family-rubik),sans-serif}html[data-theme=dark] body{background:var(--color-dark-gray-15);color:var(--color-dark-gray-4)}html[data-theme=light] body{background:var(--color-light-gray-1);color:var(--color-light-gray-12)}header{display:flex;justify-content:space-between;margin-bottom:28px}h1,h2{margin:0}.search{width:427px;margin:14px 0 8px;padding:7px 9px}.separator{border:0;border-top:1px solid currentColor;opacity:.5;margin:32px 0 24px}.matrix{display:grid;grid-template-columns:140px 427px;gap:14px 24px;align-items:center}.row{text-align:right;opacity:.7}.matrix .ds-autocomplete__item{pointer-events:none}.selected{margin-top:8px;font-size:12px;opacity:.8}</style></head><body><header><div><h1>Autocomplete</h1><small>AltaIDE/Autocomplete · Figma 202319:9697 · 427×308</small></div><div><button data-t="light">Light</button><button data-t="dark">Dark</button></div></header><section><h2>Interactive component</h2><input class="search" id="query" value="My" aria-label="Фильтр autocomplete"><div class="ds-autocomplete" id="live" data-interactive="true" role="listbox"><div class="ds-autocomplete__list" id="list"></div><div class="ds-autocomplete__info">Enter - Вставить, Tab - заменить</div></div><div class="selected" id="selected">Выберите элемент стрелками ↑/↓ и Enter.</div></section><hr class="separator"><section><h2>States matrix</h2><div class="matrix"><div class="row">Default · Stroke</div><button class="ds-autocomplete__item"><span class="ds-autocomplete__left"><span class="ds-autocomplete__icon"></span><span class="ds-autocomplete__code">MyFunction</span></span><span class="ds-autocomplete__type">DWORD</span></button><div class="row">Hover · Stroke</div><button class="ds-autocomplete__item" data-state="hover"><span class="ds-autocomplete__left"><span class="ds-autocomplete__icon"></span><span class="ds-autocomplete__code">MyFunction</span></span><span class="ds-autocomplete__type">DWORD</span></button><div class="row">Active · Stroke</div><button class="ds-autocomplete__item" data-state="active"><span class="ds-autocomplete__left"><span class="ds-autocomplete__icon"></span><span class="ds-autocomplete__code"><span class="ds-autocomplete__match">My</span>Function</span></span><span class="ds-autocomplete__type">DWORD</span></button><div class="row">Info · Menu</div><div class="ds-autocomplete__info">Enter - Вставить, Tab - заменить</div></div></section><script src="./autocomplete.js"></script><script>(function(){var data=['MyFun1','MyFunction','MyMultivariateDifferentiab','MyVar','VarMy','MyNT','TestMyVar','MyVariable','DifferentiabMy','VarMyTestVar'];var list=document.getElementById('list'),q=document.getElementById('query');function render(){var term=q.value.toLowerCase();list.innerHTML=data.filter(x=>x.toLowerCase().includes(term)).map(function(x){var i=x.toLowerCase().indexOf(term),a=i>=0?x.slice(0,i):x,b=i>=0?x.slice(i,i+term.length):'',c=i>=0?x.slice(i+term.length):x;return '<button class="ds-autocomplete__item" data-value="'+x+'"><span class="ds-autocomplete__left"><span class="ds-autocomplete__icon"></span><span class="ds-autocomplete__code">'+a+'<span class="ds-autocomplete__match">'+b+'</span>'+c+'</span><span class="ds-autocomplete__vars">(VAR1, VAR2)</span></span><span class="ds-autocomplete__type">DWORD</span></button>'}).join('');live.dataset.ready='';DSAutocomplete.init(document)}q.addEventListener('input',render);live.addEventListener('autocomplete-select',e=>selected.textContent='Выбрано: '+e.detail.value);render();document.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>document.documentElement.dataset.theme=b.dataset.t)})();</script></body></html>
+<!doctype html>
+<html lang="ru" data-theme="dark">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inputs / Autocomplete — Demo</title>
+    <link rel="stylesheet" href="../../tokens/tokens.css">
+    <link rel="stylesheet" href="../input/input.css">
+    <link rel="stylesheet" href="./autocomplete.css">
+    <style>
+      * { box-sizing: border-box; }
+
+      body {
+        margin: var(--num-28);
+        background: var(--autocomplete-item-bg-default);
+        color: var(--autocomplete-item-text-code-default);
+        font-family: var(--font-family-rubik), sans-serif;
+      }
+
+      h1,
+      h2,
+      p { margin-top: 0; }
+
+      h1,
+      h2,
+      .demo-card__title {
+        font-size: var(--font-size-1);
+        line-height: var(--line-height-0);
+      }
+
+      .demo-intro,
+      .demo-card__title {
+        color: var(--autocomplete-item-text-code-info);
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(427px, 1fr));
+        gap: var(--num-20);
+        margin-bottom: var(--num-28);
+      }
+
+      .demo-card {
+        display: grid;
+        align-content: start;
+        gap: var(--num-8);
+      }
+
+      .demo-card--list {
+        min-height: calc(var(--num-28) * 13);
+      }
+
+      .demo-hover .ds-input__control:not(:disabled):not([data-state="error"]) {
+        border-color: var(--input-border-hover);
+        background: var(--input-background-hover);
+        color: var(--input-content-hover);
+      }
+
+      .demo-focus .ds-input__control:not(:disabled):not([data-state="error"]) {
+        border-color: var(--input-border-focused);
+        background: var(--input-background-focused);
+        color: var(--input-content-focused);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Inputs / Autocomplete</h1>
+    <p class="demo-intro">Введите «my», затем используйте ↓, ↑, Enter и Escape. Клик вне списка закрывает его.</p>
+
+    <section aria-labelledby="interactive-title">
+      <h2 id="interactive-title">Интерактивный пример</h2>
+      <div class="demo-grid">
+        <div class="demo-card">
+          <div class="demo-card__title">Реальный ввод</div>
+          <div data-autocomplete-demo="interactive"></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="field-states-title">
+      <h2 id="field-states-title">Состояния поля</h2>
+      <div class="demo-grid">
+        <div class="demo-card"><div class="demo-card__title">Closed / Default</div><div data-autocomplete-demo="default"></div></div>
+        <div class="demo-card"><div class="demo-card__title">Hover</div><div data-autocomplete-demo="hover"></div></div>
+        <div class="demo-card"><div class="demo-card__title">Focus</div><div data-autocomplete-demo="focus"></div></div>
+        <div class="demo-card"><div class="demo-card__title">Filled</div><div data-autocomplete-demo="filled"></div></div>
+        <div class="demo-card"><div class="demo-card__title">Disabled</div><div data-autocomplete-demo="disabled"></div></div>
+        <div class="demo-card"><div class="demo-card__title">Error</div><div data-autocomplete-demo="error"></div></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="list-states-title">
+      <h2 id="list-states-title">Состояния списка</h2>
+      <div class="demo-grid">
+        <div class="demo-card demo-card--list"><div class="demo-card__title">Open</div><div data-autocomplete-demo="open"></div></div>
+        <div class="demo-card demo-card--list"><div class="demo-card__title">Item Hover</div><div data-autocomplete-demo="item-hover"></div></div>
+        <div class="demo-card demo-card--list"><div class="demo-card__title">Item Active</div><div data-autocomplete-demo="item-active"></div></div>
+        <div class="demo-card demo-card--list"><div class="demo-card__title">Empty</div><div data-autocomplete-demo="empty"></div></div>
+      </div>
+    </section>
+
+    <template id="autocomplete-demo-template">
+      <div class="ds-autocomplete" data-open="false">
+        <div class="ds-input">
+          <label class="ds-input__label">Label</label>
+          <div class="ds-autocomplete__anchor">
+            <input
+              class="ds-input__control ds-autocomplete__control"
+              type="text"
+              placeholder="Text"
+              autocomplete="off"
+              role="combobox"
+              aria-autocomplete="list"
+              aria-expanded="false"
+            >
+            <div class="ds-autocomplete__popup" role="listbox" hidden>
+              <div class="ds-autocomplete__options"></div>
+              <div class="ds-autocomplete__empty" role="status" hidden>Ничего не найдено</div>
+              <div class="ds-autocomplete__footer" aria-hidden="true">
+                <span>Enter — Вставить, Tab — заменить</span>
+                <span class="ds-autocomplete__more"><img src="./assets/more.png" alt=""></span>
+              </div>
+            </div>
+          </div>
+          <p class="ds-input__hint">Hint text</p>
+        </div>
+      </div>
+    </template>
+
+    <script src="./autocomplete.js"></script>
+    <script>
+      var autocompleteDemoData = [
+        "MyFun1",
+        "MyFunction",
+        "MyMultivariateDifferentiab",
+        "MyVar",
+        "Var My",
+        "MyNT",
+        "TestMyVar",
+        "MyVariable",
+        "DifferentiabMy",
+        "Var MyTestVar"
+      ];
+
+      var autocompleteTemplate = document.querySelector("#autocomplete-demo-template");
+      var autocompleteInstances = [];
+
+      document.querySelectorAll("[data-autocomplete-demo]").forEach(function (mount, index) {
+        var state = mount.dataset.autocompleteDemo;
+        var fragment = autocompleteTemplate.content.cloneNode(true);
+        var root = fragment.querySelector(".ds-autocomplete");
+        var label = fragment.querySelector("label");
+        var input = fragment.querySelector("input");
+        var popup = fragment.querySelector(".ds-autocomplete__popup");
+        var hint = fragment.querySelector(".ds-input__hint");
+        var prefix = "demo-autocomplete-" + index;
+
+        root.id = prefix;
+        input.id = prefix + "-input";
+        popup.id = prefix + "-listbox";
+        hint.id = prefix + "-hint";
+        label.htmlFor = input.id;
+        input.setAttribute("aria-controls", popup.id);
+        input.setAttribute("aria-describedby", hint.id);
+
+        if (state === "hover") {
+          root.classList.add("demo-hover");
+        } else if (state === "focus") {
+          root.classList.add("demo-focus");
+          input.value = "My";
+        } else if (state === "filled") {
+          input.value = "MyVar";
+        } else if (state === "disabled") {
+          input.disabled = true;
+        } else if (state === "error") {
+          input.value = "Unknown";
+          root.querySelector(".ds-input").dataset.invalid = "true";
+          input.setAttribute("aria-invalid", "true");
+        }
+
+        mount.append(fragment);
+
+        var instance = new DSAutocomplete(root, autocompleteDemoData);
+        autocompleteInstances.push(instance);
+
+        if (state === "open" || state === "item-hover" || state === "item-active") {
+          input.value = "My";
+          instance.open();
+        } else if (state === "empty") {
+          input.value = "ZZ";
+          instance.open();
+        }
+
+        if (state === "item-hover") {
+          root.querySelector(".ds-autocomplete__item").dataset.demoHover = "true";
+        } else if (state === "item-active") {
+          instance.setActive(0);
+        }
+      });
+    </script>
+  </body>
+</html>
