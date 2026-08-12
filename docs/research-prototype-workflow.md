@@ -148,7 +148,23 @@ Prototype CSS отвечает только за layout, positioning, grid/flex,
 - сообщений о недостающих компонентах;
 - theme switch, если переключение темы не является частью исследования.
 
-## 13. Publish
+## 13. Repository verification
+
+**Цель:** автоматически поймать типовые технические нарушения до публикации и ручного QA.
+
+Из корня репозитория запустить:
+
+```bash
+python3 scripts/verify_repo.py
+```
+
+Перед переходом к публикации verifier должен завершиться без `ERRORS`.
+
+`WARNINGS` нужно просмотреть вручную и решить, блокируют ли они исследовательский сценарий.
+
+Verifier не заменяет Visual QA, Interaction QA или Figma verification и сам по себе не присваивает `Ready` / `Research Ready`.
+
+## 14. Publish
 
 **Цель:** получить воспроизводимую версию сценария для теста.
 
@@ -159,7 +175,7 @@ Prototype CSS отвечает только за layout, positioning, grid/flex,
 - проверить URL GitHub Pages;
 - убедиться, что сценарий открывается и проходится в опубликованной версии.
 
-## 14. Registry
+## 15. Registry
 
 **Цель:** зарегистрировать конкретную тестируемую версию.
 
@@ -177,7 +193,7 @@ Prototype CSS отвечает только за layout, positioning, grid/flex,
 
 `Research Ready` допустим только после прохождения Research Prototype Gate.
 
-## 15. Tag
+## 16. Tag
 
 **Цель:** сохранить точку, которую реально показывали респондентам.
 
@@ -251,6 +267,7 @@ Prototype CSS отвечает только за layout, positioning, grid/flex,
 - релевантные states реализованы;
 - keyboard/focus проверены;
 - нет блокирующих console errors;
+- `python3 scripts/verify_repo.py` завершён без `ERRORS`;
 - GitHub Pages версия работает;
 - developer/debug UI отсутствует;
 - registry содержит prototype commit и DS commit;
