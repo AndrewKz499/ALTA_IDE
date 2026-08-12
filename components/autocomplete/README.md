@@ -2,6 +2,9 @@
 
 Доступный combobox AltaIDE DS с фильтрацией по подстроке. Компонент переиспользует разметку и стили `Inputs / Input`; локальной копии Input нет.
 
+## Preview
+▶ [Открыть живой Preview Autocomplete](https://andrewkz499.github.io/ALTA_IDE/components/autocomplete/preview.html)
+
 ## Подключение
 
 ```html
