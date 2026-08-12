@@ -2,6 +2,9 @@
 
 AltaIDE Badge, Figma Component Set `185215:20485`.
 
+## Верстка
+▶ [Открыть верстку Badge](https://andrewkz499.github.io/ALTA_IDE/components/badge/index.html)
+
 ## Preview
 ▶ [Открыть живой Preview Badge](https://andrewkz499.github.io/ALTA_IDE/components/badge/preview.html)
 
