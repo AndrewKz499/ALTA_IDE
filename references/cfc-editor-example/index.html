@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AltaIDE CFC Editor — reference</title>
+  <link rel="stylesheet" href="../../tokens/tokens.css">
+  <link rel="stylesheet" href="./reference.css">
+</head>
+<body>
+  <div class="ref-ide">
+    <header class="ref-menu-bar">
+      <div class="ref-logo" aria-label="ALTA">ALTA</div>
+      <nav class="ref-menu" aria-label="Главное меню">
+        <button type="button">Файл</button><button type="button">Правка</button><button type="button">Вид</button>
+        <button type="button">Библиотеки</button><button type="button">Компиляция</button><button type="button">Онлайн</button>
+        <button type="button">Отладка</button><button type="button">Инструменты</button><button type="button">Окно</button><button type="button">Справка</button>
+      </nav>
+    </header>
+
+    <div class="ref-toolbar" aria-label="Панель инструментов">
+      <div class="ref-tool-group"><button>▣</button><button>▤</button><button>▥</button><button>□</button></div>
+      <div class="ref-tool-group"><button>T</button></div>
+      <div class="ref-tool-group"><button>◉</button><button>♛</button><button class="is-run">▶</button></div>
+      <div class="ref-tool-group"><button>⚙</button></div>
+    </div>
+
+    <div class="ref-body">
+      <aside class="ref-sidebar">
+        <div class="ref-panel-title"><span>Новый проект</span><span>⚙</span></div>
+        <div class="ref-tree" role="tree" aria-label="Дерево проекта">
+          <button role="treeitem" aria-expanded="true">⌄ ▣ Устройство (ПЛК)</button>
+          <button class="l2" role="treeitem" aria-expanded="true">⌄ ▣ Программные блоки (POU)</button>
+          <button class="l3 is-active" role="treeitem" aria-selected="true"><b>CFC</b> Program_1 <em>PRG</em></button>
+          <button class="l2" role="treeitem">⌄ ▣ Менеджер задач</button>
+          <button class="l2" role="treeitem">› ▣ Списки переменных</button>
+        </div>
+      </aside>
+
+      <div class="ref-resize" role="separator" aria-orientation="vertical" aria-label="Изменить ширину боковой панели"></div>
+
+      <main class="ref-main">
+        <div class="ref-tabs" role="tablist" aria-label="Открытые документы">
+          <button role="tab" aria-selected="false">▣ Менеджер задач <span>×</span></button>
+          <button role="tab" aria-selected="true"><b>CFC</b> Program_1 <span>×</span></button>
+        </div>
+
+        <section class="ref-workspace">
+          <div class="ref-editor-column">
+            <div class="ref-namebar"><b>Программа:</b><span>Program_1</span></div>
+            <button class="ref-subtitle" type="button" aria-expanded="false">› Таблица переменных</button>
+
+            <div class="ref-canvas">
+              <div class="ref-canvas-toolbar">
+                <button>▣</button><button>▣</button><button>▣</button><i></i><button>▣</button><button>▣</button><button>▣</button>
+              </div>
+              <div class="ref-zoom"><button>□</button><span>100%</span><button>+</button><button>−</button></div>
+
+              <svg class="ref-wire" viewBox="0 0 850 520" aria-hidden="true">
+                <path d="M380 190 H420 V320 H470"/>
+              </svg>
+
+              <article class="ref-node ref-function" style="left:80px;top:150px">
+                <header>Function</header>
+                <div><span>◉ UT_StepFull_C(1)</span><span>◉ UT_StepFull</span></div>
+                <div><span>◉ BoolInput</span><span></span></div>
+                <i class="port left a"></i><i class="port left b"></i><i class="port right a connected"></i><i class="port right b"></i>
+              </article>
+
+              <article class="ref-node ref-program" style="left:470px;top:280px">
+                <header>Program</header>
+                <div><span>◉ UT_StepFull</span><span></span></div>
+                <div><span>◉ Enable</span><span></span></div>
+                <i class="port left a connected"></i><i class="port left b"></i>
+              </article>
+            </div>
+          </div>
+
+          <div class="ref-resize" role="separator" aria-orientation="vertical" aria-label="Изменить ширину библиотеки"></div>
+
+          <aside class="ref-library">
+            <div class="ref-panel-title"><span>Библиотека элементов</span><span>?</span></div>
+            <div class="ref-tree" role="tree" aria-label="Библиотека элементов">
+              <button role="treeitem">⌄ ★ Стандартные</button>
+              <button class="l2" role="treeitem">⌄ ☆ Логические</button>
+              <button class="l3" role="treeitem">★ AND <em>Логическое И</em></button>
+              <button class="l3" role="treeitem">★ OR <em>Логическое ИЛИ</em></button>
+              <button class="l3" role="treeitem">★ NOT <em>Логическое НЕ</em></button>
+              <button class="l2" role="treeitem">⌄ ★ Арифметические</button>
+              <button class="l3" role="treeitem">★ ADD <em>Сложение</em></button>
+              <button class="l3" role="treeitem">★ SUB <em>Вычитание</em></button>
+              <button class="l3" role="treeitem">★ DIV <em>Деление</em></button>
+              <button role="treeitem">⌄ ★ Библиотеки</button>
+              <button class="l2" role="treeitem">⌄ ☆ UtilLib/</button>
+            </div>
+          </aside>
+        </section>
+
+        <div class="ref-horizontal-resize" role="separator" aria-orientation="horizontal"></div>
+
+        <section class="ref-bottom-panel">
+          <div class="ref-bottom-tabs" role="tablist" aria-label="Сообщения">
+            <button role="tab" aria-selected="true"><b class="error">!</b> Ошибки <span>×</span></button>
+            <button role="tab" aria-selected="false"><b class="warning">!</b> Предупреждения <span>×</span></button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
