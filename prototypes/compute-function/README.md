@@ -1,6 +1,6 @@
 # Compute Function Prototype
 
-Интерактивный standalone-прототип AltaIDE по Figma nodes `21127:451709` и `21130:521108`.
+Интерактивный standalone-прототип AltaIDE по Figma nodes `21127:451709`, `21130:521108` и `21524:606238`.
 
 ## Preview
 
@@ -12,8 +12,12 @@
 
 ## Возможности
 
-- research-сценарий `initial → Compile → compiling` в одном DOM;
-- состояние кнопки Compile: `data-state="default" → data-state="pressed"`;
+- research-сценарий `initial → Compile Pressed → Project Build / Console` в одном DOM;
+- Compile запускает simulated build state без настоящего compiler или backend;
+- состояние кнопки Compile: `default → pressed → building`;
+- Console автоматически открывается при переходе в `project-build`;
+- в Console выводится mock build log из Figma;
+- во время сборки в StatusBar отображается анимированный loader;
 - изменение ширины Sidebar;
 - изменение высоты нижней панели;
 - переключение вкладок;
@@ -23,11 +27,12 @@
 
 ## Состояния сценария
 
-- `initial / idle` — исходный экран, кнопка Compile в состоянии Default;
-- `compiling / running` — после клика, Enter или Space кнопка Compile остается в состоянии Pressed;
-- повторное нажатие в состоянии `running` не запускает новый переход и не меняет интерфейс.
+- `initial / idle` — исходный экран, кнопка Compile в состоянии Default, нижняя панель закрыта;
+- `compiling / pressed` — промежуточный визуальный кадр Pressed после клика, Enter или Space;
+- `project-build / building` — открыта Console, видны mock build log и loader сборки;
+- повторное нажатие в состоянии `building` не создаёт второй экземпляр Console и не запускает новый переход.
 
-Состояние хранится только в памяти страницы в объекте `scenarioState`. После перезагрузки прототип возвращается в `initial / idle`; таймеров, backend-запросов и перехода в success/error нет.
+Состояние хранится только в памяти страницы в объекте `scenarioState`, а текст лога — в `scenarioData`. После перезагрузки прототип возвращается в `initial / idle`; backend-запросов, настоящей компиляции и перехода в success/error нет.
 
 ## Проверенные размеры
 
@@ -38,7 +43,7 @@
 
 ## Статус
 
-`Draft` — базовый экран и первый переход research-сценария. Visual QA и сценарная Interaction QA выполняются отдельно перед переводом прототипа в `Research Ready`.
+`Draft` — сценарий последовательно расширяется следующими состояниями. Перевод в `Research Ready` выполняется только после сборки и проверки всей цепочки.
 
 ## Техническое примечание
 
