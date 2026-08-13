@@ -6,6 +6,10 @@
 
 ▶ [Открыть Compute Function Prototype](https://andrewkz499.github.io/ALTA_IDE/prototypes/compute-function/)
 
+## Скачать
+
+⬇ [Скачать standalone-прототип ZIP](https://github.com/AndrewKz499/ALTA_IDE/raw/refs/heads/main/prototypes/compute-function/altaide-compute-function-prototype.zip)
+
 ## Назначение
 
 Базовая верстка экрана IDE для дальнейшей сборки кликабельного research-сценария. На текущем этапе интерфейс сверстан напрямую по Figma; готовность компонентов AltaIDE DS не является блокирующей.
