@@ -68,7 +68,7 @@
 | Comments | `components/comments/` | Comments + CommentsBar; Light/Dark preview | Generated | 0.1 | — | — | — |
 | Badge | `components/badge/` | Error, Info, Counter, Done; Light/Dark preview | Generated | 0.1 | — | — | — |
 | Dropdown | `components/dropdown/` | L/M; Default, Selected, Focused, Invalid, Loading, Disable, FocusedFilled, Hover, HoverFilled, Hover_Invalid, Focused_Invalid | Generated | 0.1 | — | — | — |
-| Autocomplete | `components/autocomplete/` | Default, Hover, Active, Info; keyboard navigation; Light/Dark preview | Generated | 0.1 | — | — | — |
+| Autocomplete | `components/autocomplete/` | Default, Hover, Active, Info; keyboard navigation; Light/Dark preview | Verifying | 0.1 | — | — | — |
 | Bit Mask Picker | `components/bit-mask-picker/` | Interactive component; States matrix; Light/Dark preview | Generated | 0.1 | — | — | — |
 | Calendar and Time Pickers | `components/calendar-and-time-pickers/` | Interactive component; States matrix; Light/Dark preview | Generated | 0.1 | — | — | — |
 | Segmented Control | `components/segmented-control/` | Interactive component; States matrix; Light/Dark preview | Generated | 0.1 | — | — | — |
