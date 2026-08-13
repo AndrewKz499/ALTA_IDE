@@ -26,6 +26,7 @@
 | ID | Scenario | Hypothesis | Prototype commit | DS commit | Tag | URL | Status | Test date |
 |---|---|---|---|---|---|---|---|---|
 | BP-01 | Bottom Panel / Анализатор | Нижнюю панель можно собрать из существующих компонентов DS без создания новых компонентов | `52390883` | — | — | https://andrewkz499.github.io/ALTA_IDE/prototypes/bottom-panel/ | Draft | — |
+| CF-01 | Compute Function / базовый экран | — | `cd32c9a8` | — | — | https://andrewkz499.github.io/ALTA_IDE/prototypes/compute-function/ | Draft | — |
 
 ## Правила заполнения
 
