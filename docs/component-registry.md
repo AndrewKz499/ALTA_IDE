@@ -60,8 +60,8 @@
 
 | Figma | GitHub path | States | Status | Version | Verified against Figma | Verified at | Used in prototypes |
 |---|---|---|---|---|---|---|---|
-| Button | `components/button/` | Default, Hover, Pressed, Loading, Disabled; Light/Dark preview | Generated | 0.1 | — | — | — |
-| Input | `components/input/` | Default_Placeholder, Default_Filled, Hover_Placeholder, Hover, Edit, EditBlue, Invalid, Hover_Invalid, Edit_Invalid, Disable; XL/L/M; Light/Dark preview | Generated | 0.1 | — | — | — |
+| Button | `components/button/` | Default, Hover, Pressed, Loading, Disabled; Light/Dark preview | Verifying | 0.1 | — | — | — |
+| Input | `components/input/` | Default_Placeholder, Default_Filled, Hover_Placeholder, Hover, Edit, EditBlue, Invalid, Hover_Invalid, Edit_Invalid, Disable; XL/L/M; Light/Dark preview | Verifying | 0.1 | — | — | — |
 | Label | `components/label/` | Base label; Light/Dark preview | Generated | 0.1 | — | — | — |
 | Input Number | `components/input-number/` | Default, Hover, Focused, FocusedBlue, Disabled, None, Invalid, Hover_Invalid, Focused_Invalid; 104×28; Light/Dark preview | Generated | 0.1 | — | — | — |
 | Clipboard and Hints | `components/clipboard-and-hints/` | Clipboard, Hints; Interactive + Light/Dark preview | Generated | 0.1 | — | — | — |
